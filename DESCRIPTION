@@ -1,5 +1,5 @@
 Package: trendeval
-Title: What the Package Does (One Line, Title Case)
+Title: Evaluate trending models
 Version: 0.0.0.9000
 Authors@R:
     c(
@@ -23,7 +23,8 @@ Authors@R:
         comment = c(ORCID = "0000-0002-8587-7113")
       )
     )
-Description: What the package does (one paragraph).
+Description: Provides a coherent interface for evaluating models fit with the
+  trending package.
 URL: https://github.com/reconhub/trendeval
 BugReports: https://github.com/reconhub/trendeval/issues
 License: MIT + file LICENSE
@@ -31,7 +32,8 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports: 
+Imports:
+    trending,
     yardstick,
     dplyr,
     rsample,
@@ -43,6 +45,6 @@ Imports:
     tidyr
 Suggests: 
     testthat,
-    trending
-
-
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
