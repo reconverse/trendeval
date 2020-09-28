@@ -24,10 +24,9 @@ before using.
 # Trendeval
 
 *trendeval* aims to provide a coherent interface for evaluating models
-fit with the [trending](https://CRAN.R-project.org/package=trending)
-package. Whilst it is useful in an interactive context, it’s main focus
-is to provide an intuitive interface on which other packages can be
-developed
+fit with the [trending](https://github.com/reconhub/trending) package.
+Whilst it is useful in an interactive context, it’s main focus is to
+provide an intuitive interface on which other packages can be developed
 (e.g. [*trendbreaker*](https://github.com/reconhub/trendbreaker)).
 
 ## Installing the package

@@ -1,5 +1,5 @@
 Package: trendeval
-Title: Evaluate trending models
+Title: Evaluate Trending Models
 Version: 0.0.0.9000
 Authors@R:
     c(
@@ -45,6 +45,5 @@ Imports:
     tidyr
 Suggests: 
     testthat,
-    knitr,
-    rmarkdown
-VignetteBuilder: knitr
+Remotes:
+    reconhub/trending
