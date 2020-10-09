@@ -37,10 +37,8 @@ Imports:
     yardstick,
     dplyr,
     rsample,
-    rlang,
     ellipsis,
     stats,
-    purrr,
     tibble,
     tidyr
 Suggests: 

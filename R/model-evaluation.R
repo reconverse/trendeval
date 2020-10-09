@@ -54,7 +54,6 @@
 #'   rather than predictive power)
 #'
 #' @importFrom stats na.omit predict
-#' @importFrom rlang .data
 #' @export
 #' @rdname evaluate_models
 #' @aliases evaluate_resampling
@@ -70,15 +69,20 @@ evaluate_resampling <- function(model,
     fit <- trending::fit(model, rsample::analysis(split))
     validation <- predict(fit, rsample::assessment(split))
     # TODO: always sort by time component
-    metrics(validation, .data[[response]], .data$pred)
+    metrics(validation, validation[[response]], validation$estimate)
   })
-  res <- dplyr::bind_rows(res)
-  res <- dplyr::group_by(res, .data$.metric)
-  res <- dplyr::summarise(res, estimate = mean(.data$.estimate))
-  tibble::tibble(
-    metric = res$.metric,
-    score = res$estimate
-  )
+  #res <- dplyr::bind_rows(res)
+  res <- do.call(rbind, res)
+  res <- tapply(res$.estimate, res$.metric, mean)
+  #data.frame(metric = row.names(res), score = res$estimate)
+  
+  tibble::tibble(metric = row.names(res), score = res)
+  # res <- dplyr::group_by(res, .data$.metric)
+  # res <- dplyr::summarise(res, estimate = mean(.data$.estimate))
+  # tibble::tibble(
+  #   metric = res$.metric,
+  #   score = res$estimate
+  # )
 }
 
 
@@ -88,9 +92,13 @@ evaluate_resampling <- function(model,
 evaluate_aic <- function(model, data, ...) {
   ellipsis::check_dots_used()
   full_model_fit <- model$fit(data)
+  # data.frame(
+  #   metric = "aic",
+  #   score = stats::AIC(full_model_fit$fitted_model, ...)
+  # )
   tibble::tibble(
     metric = "aic",
-    score = stats::AIC(full_model_fit$model, ...)
+    score = stats::AIC(full_model_fit$fitted_model, ...)
   )
 }
 
@@ -100,16 +108,16 @@ evaluate_aic <- function(model, data, ...) {
 #' @aliases evaluate_models
 evaluate_models <- function(data, models, method = evaluate_resampling, ...) {
   ellipsis::check_dots_used()
-  out <- purrr::map(
+  out <- lapply(
     models,
-    function(model) purrr::safely(method)(model, data, ...)
+    function(model) safely(method)(model, data, ...)
   )
-  out <- purrr::transpose(out)
+  out <- base_transpose(out)
 
   out <- tibble::tibble(
     model = names(models),
-    result = out$result,
-    error = out$error
+    result = out[[1]],
+    error = out[[3]]
   )
   tidyr::unnest(out, "result", keep_empty = TRUE)
 }
