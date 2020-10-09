@@ -59,14 +59,6 @@ remotes::install_github("reconhub/trendeval", build_vignettes = TRUE)
 
 # Resources
 
-## Websites
-
-The following websites are available:
-
-- The *trendeval* project on *github*, useful for developers, contributors, and
-users wanting to post issues, bug reports and feature requests: <br>
-<https://github.com/reconhub/trendeval>
-
 ## Getting help online
 
 Bug reports and feature requests should be posted on *github* using the 
