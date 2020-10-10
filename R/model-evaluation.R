@@ -71,18 +71,10 @@ evaluate_resampling <- function(model,
     # TODO: always sort by time component
     metrics(validation, validation[[response]], validation$estimate)
   })
-  #res <- dplyr::bind_rows(res)
+  
   res <- do.call(rbind, res)
   res <- tapply(res$.estimate, res$.metric, mean)
-  #data.frame(metric = row.names(res), score = res$estimate)
-  
-  tibble::tibble(metric = row.names(res), score = res)
-  # res <- dplyr::group_by(res, .data$.metric)
-  # res <- dplyr::summarise(res, estimate = mean(.data$.estimate))
-  # tibble::tibble(
-  #   metric = res$.metric,
-  #   score = res$estimate
-  # )
+  data.frame(metric = row.names(res), score = res)
 }
 
 
@@ -92,11 +84,7 @@ evaluate_resampling <- function(model,
 evaluate_aic <- function(model, data, ...) {
   ellipsis::check_dots_used()
   full_model_fit <- model$fit(data)
-  # data.frame(
-  #   metric = "aic",
-  #   score = stats::AIC(full_model_fit$fitted_model, ...)
-  # )
-  tibble::tibble(
+  data.frame(
     metric = "aic",
     score = stats::AIC(full_model_fit$fitted_model, ...)
   )
@@ -113,12 +101,12 @@ evaluate_models <- function(data, models, method = evaluate_resampling, ...) {
     function(model) safely(method)(model, data, ...)
   )
   out <- base_transpose(out)
-
-  out <- tibble::tibble(
+  out <- data.frame(
     model = names(models),
-    result = out[[1]],
-    error = out[[3]]
+    result = I(out[[1]]),
+    error = I(out[[3]])
   )
+  
   tidyr::unnest(out, "result", keep_empty = TRUE)
 }
 

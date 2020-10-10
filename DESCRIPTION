@@ -35,11 +35,9 @@ RoxygenNote: 7.1.1
 Imports:
     trending,
     yardstick,
-    dplyr,
     rsample,
     ellipsis,
     stats,
-    tibble,
     tidyr
 Suggests: 
     testthat,
