@@ -41,5 +41,7 @@ Imports:
     tidyr
 Suggests: 
     testthat,
+    dplyr,
+    outbreaks
 Remotes:
     reconhub/trending
