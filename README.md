@@ -48,6 +48,67 @@ if (!require(remotes)) {
 remotes::install_github("reconhub/trendeval", build_vignettes = TRUE)
 ```
 
+## Model selection example
+
+``` r
+library(dplyr)      # for data manipulation
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+library(outbreaks)  # for data
+library(trending)   # for trend fitting
+library(trendeval)  # for model selection
+
+# load data
+data(covid19_england_nhscalls_2020)
+
+# define a model
+models  <- list(
+  simple = lm_model(count ~ day),
+  glm_poisson = glm_model(count ~ day, family = "poisson"),
+  glm_negbin = glm_nb_model(count ~ day + weekday),
+  will_error = glm_nb_model(count ~ day + nonexistant)
+)
+
+# select 6 weeks of data (from a period when the prevalence was decreasing)
+last_date <- as.Date("2020-05-28")
+first_date <- last_date - 8*7
+pathways_recent <-
+  covid19_england_nhscalls_2020 %>%
+  filter(date >= first_date, date <= last_date) %>%
+  group_by(date, day, weekday) %>%
+  summarise(count = sum(count), .groups = "drop")
+
+# split data for fitting and prediction
+dat <-
+  pathways_recent %>%
+  group_by(date <= first_date + 6*7) %>%
+  group_split()
+fitting_data <- dat[[2]]
+pred_data <- select(dat[[1]], date, day, weekday)
+
+
+out <- capture.output( # no log output in readme :)
+  auto_select <- select_model(fitting_data, models,
+    method = evaluate_resampling,
+    metrics = list(yardstick::rmse, yardstick::huber_loss, yardstick::mae)
+  )
+)
+
+auto_select$leaderboard
+#> # A tibble: 3 x 4
+#>   model       huber_loss   mae  rmse
+#>   <chr>            <dbl> <dbl> <dbl>
+#> 1 glm_poisson      5193. 5193. 5193.
+#> 2 glm_negbin       5223. 5224. 5224.
+#> 3 simple           6902. 6903. 6903.
+```
+
 # Resources
 
 ## Getting help online
