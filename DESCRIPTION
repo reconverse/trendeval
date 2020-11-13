@@ -38,10 +38,9 @@ Imports:
     rsample,
     ellipsis,
     stats,
-    tidyr
+    tidyr,
+    tibble
 Suggests: 
     testthat,
     dplyr,
     outbreaks
-Remotes:
-    reconhub/trending

@@ -4,7 +4,6 @@
 \alias{evaluate_resampling}
 \alias{evaluate_aic}
 \alias{evaluate_models}
-\alias{select_model}
 \title{Tools for model evaluation}
 \usage{
 evaluate_resampling(
@@ -15,11 +14,9 @@ evaluate_resampling(
   repeats = 1
 )
 
-evaluate_aic(model, data, ...)
+evaluate_aic(model, data)
 
 evaluate_models(data, models, method = evaluate_resampling, ...)
-
-select_model(data, models, method = evaluate_resampling, ...)
 }
 \arguments{
 \item{model}{A \link[trending:trending_model]{trending::trending_model} object.}
@@ -41,8 +38,6 @@ to compute the fit statistics.}
 be repeated for; defaults to 1; larger values are likely to yield more
 reliable / stable results, at the expense of computational time}
 
-\item{...}{further arguments passed to \code{\link[stats:AIC]{stats::AIC()}}}
-
 \item{models}{a \code{list} of models specified as an \code{\link[trending:trending_model]{trending::trending_model()}}
 objects.}
 
@@ -50,6 +45,9 @@ objects.}
 \code{\link[=evaluate_resampling]{evaluate_resampling()}} (default, better for selecting models with good
 predictive power) or \code{\link[=evaluate_aic]{evaluate_aic()}} (faster, focuses on goodness-of-fit
 rather than predictive power)}
+
+\item{...}{further arguments passed to the underlying method (e.g. \code{metrics},
+\code{v}, \code{repeats}).}
 }
 \description{
 These functions provide tools for evaluating \code{\link[trending:trending_model]{trending::trending_model}}s,
@@ -61,8 +59,7 @@ the Root Mean Square Error (RMSE) of testing sets to measure the predictive
 power of a single model. \code{\link[=evaluate_aic]{evaluate_aic()}} is faster, but
 \code{\link[=evaluate_resampling]{evaluate_resampling()}} is better-suited to select best predicting models.
 \code{\link[=evaluate_models]{evaluate_models()}} uses either \code{\link[=evaluate_aic]{evaluate_aic()}} or \code{\link[=evaluate_resampling]{evaluate_resampling()}}
-to compare a series of models. \code{\link[=select_model]{select_model()}} does the same, but returns
-the 'best' model according to the chosen method.
+to compare a series of models.
 }
 \details{
 These functions wrap around existing functions from several

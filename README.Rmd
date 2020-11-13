@@ -94,13 +94,15 @@ pred_data <- select(dat[[1]], date, day, weekday)
 
 
 out <- capture.output( # no log output in readme :)
-  auto_select <- select_model(fitting_data, models,
+  results <- evaluate_models(
+    fitting_data, 
+    models,
     method = evaluate_resampling,
     metrics = list(yardstick::rmse, yardstick::huber_loss, yardstick::mae)
   )
 )
 
-auto_select$leaderboard
+results
 
 ```
 
@@ -109,7 +111,7 @@ auto_select$leaderboard
 ## Getting help online
 
 Bug reports and feature requests should be posted on *github* using the 
-[*issue* system](https://github.com/reconhub/incidence2/issues). All other
+[*issue* system](https://github.com/reconhub/trendeval/issues). All other
 questions should be posted on the **RECON** slack channel see
 <https://www.repidemicsconsortium.org/forum/> for details on how to join.
   

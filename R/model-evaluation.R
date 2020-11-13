@@ -9,51 +9,44 @@
 #' power of a single model. [evaluate_aic()] is faster, but
 #' [evaluate_resampling()] is better-suited to select best predicting models.
 #' [evaluate_models()] uses either [evaluate_aic()] or [evaluate_resampling()]
-#' to compare a series of models. [select_model()] does the same, but returns
-#' the 'best' model according to the chosen method.
+#' to compare a series of models.
 #'
 #' @details These functions wrap around existing functions from several
 #'   packages. [stats::AIC()] is used in [evaluate_aic()], and
 #'   [evaluate_resampling()] uses [rsample::vfold_cv()] for cross-validation and
 #'   [yardstick::rmse()] to calculate RMSE.
-#'
+#' 
 #' @seealso [stats::AIC()] for computing AIC; [rsample::vfold_cv()] for cross
 #'   validation; [yardstick::rmse()] for calculating RMSE; `yardstick` also
 #'   implements a range of other metrics for assessing model fit outlined at
 #'   \url{https://yardstick.tidymodels.org/}; [trending::trending_model()] for
 #'   the different ways to build the model objects.
-#'
+#' 
 #' @param model A [trending::trending_model] object.
-#'
 #' @param data a `data.frame` containing data (including the response variable
 #'   and all predictors) used in `model`
-#'
 #' @param metrics a list of functions assessing model fit, with a similar
 #'   interface to [yardstick::rmse()]; see
 #'   \url{https://yardstick.tidymodels.org/} for more information
-#'
 #' @param v the number of equally sized data partitions to be used for K-fold
 #'   cross-validation; `v` cross-validations will be performed, each using `v -
 #'   1` partition as training set, and the remaining partition as testing set.
 #'   Defaults to 1, so that the method uses leave-one-out cross validation, akin
 #'   to Jackknife except that the testing set (and not the training set) is used
 #'   to compute the fit statistics.
-#'
 #' @param repeats the number of times the random K-fold cross validation should
 #'   be repeated for; defaults to 1; larger values are likely to yield more
 #'   reliable / stable results, at the expense of computational time
-#'
-#' @param ... further arguments passed to [stats::AIC()]
-#'
 #' @param models a `list` of models specified as an [trending::trending_model()]
-#' objects.
-#'
+#'   objects.
 #' @param method a `function` used to evaluate models: either
 #'   [evaluate_resampling()] (default, better for selecting models with good
 #'   predictive power) or [evaluate_aic()] (faster, focuses on goodness-of-fit
 #'   rather than predictive power)
+#' @param ... further arguments passed to the underlying method (e.g. `metrics`,
+#'   `v`, `repeats`).
 #'
-#' @importFrom stats na.omit predict
+#' @importFrom stats predict
 #' @export
 #' @rdname evaluate_models
 #' @aliases evaluate_resampling
@@ -68,7 +61,6 @@ evaluate_resampling <- function(model,
   res <- lapply(training_split$splits, function(split) {
     fit <- trending::fit(model, rsample::analysis(split))
     validation <- predict(fit, rsample::assessment(split))
-    # TODO: always sort by time component
     metrics(validation, validation[[response]], validation$estimate)
   })
   
@@ -81,15 +73,13 @@ evaluate_resampling <- function(model,
 #' @export
 #' @rdname evaluate_models
 #' @aliases evaluate_aic
-evaluate_aic <- function(model, data, ...) {
-  ellipsis::check_dots_used()
+evaluate_aic <- function(model, data) {
   full_model_fit <- model$fit(data)
   data.frame(
     metric = "aic",
-    score = stats::AIC(full_model_fit$fitted_model, ...)
+    score = stats::AIC(full_model_fit$fitted_model)
   )
 }
-
 
 #' @export
 #' @rdname evaluate_models
@@ -101,30 +91,14 @@ evaluate_models <- function(data, models, method = evaluate_resampling, ...) {
     function(model) safely(method)(model, data, ...)
   )
   out <- base_transpose(out)
-  out <- data.frame(
-    model = names(models),
-    result = I(out[[1]]),
-    error = I(out[[3]])
+  out <- tibble::tibble(
+    model_name = names(models),
+    model = models,
+    data = list(data),
+    result = out[[1]],
+    warning = out[[2]],
+    error = out[[3]]
   )
   
   tidyr::unnest(out, "result", keep_empty = TRUE)
-}
-
-
-#' @export
-#' @rdname evaluate_models
-#' @aliases select_model
-select_model <- function(data, models, method = evaluate_resampling, ...) {
-  ellipsis::check_dots_used()
-  stats <- evaluate_models(data = data, models = models, method = method, ...)
-  stats$error <- NULL
-  stats <- na.omit(stats)
-  stats <- tidyr::pivot_wider(
-    stats,
-    names_from = "metric",
-    values_from = "score"
-  )
-  stats <- stats[order(stats[, 2, drop = TRUE]), ]
-  # per convention the first row is the best model sorted by the first metric
-  list(best_model = models[[stats$model[[1]]]], leaderboard = stats)
 }

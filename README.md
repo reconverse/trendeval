@@ -52,14 +52,6 @@ remotes::install_github("reconhub/trendeval", build_vignettes = TRUE)
 
 ``` r
 library(dplyr)      # for data manipulation
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 library(outbreaks)  # for data
 library(trending)   # for trend fitting
 library(trendeval)  # for model selection
@@ -94,19 +86,28 @@ pred_data <- select(dat[[1]], date, day, weekday)
 
 
 out <- capture.output( # no log output in readme :)
-  auto_select <- select_model(fitting_data, models,
+  results <- evaluate_models(
+    fitting_data, 
+    models,
     method = evaluate_resampling,
     metrics = list(yardstick::rmse, yardstick::huber_loss, yardstick::mae)
   )
 )
 
-auto_select$leaderboard
-#> # A tibble: 3 x 4
-#>   model       huber_loss   mae  rmse
-#>   <chr>            <dbl> <dbl> <dbl>
-#> 1 glm_poisson      5193. 5193. 5193.
-#> 2 glm_negbin       5223. 5224. 5224.
-#> 3 simple           6902. 6903. 6903.
+results
+#> # A tibble: 10 x 7
+#>    model_name  model        data              metric     score warning      error       
+#>    <chr>       <named list> <list>            <chr>      <dbl> <named list> <named list>
+#>  1 simple      <trndng_l>   <tibble [43 × 5]> huber_loss 6902. <NULL>       <NULL>      
+#>  2 simple      <trndng_l>   <tibble [43 × 5]> mae        6903. <NULL>       <NULL>      
+#>  3 simple      <trndng_l>   <tibble [43 × 5]> rmse       6903. <NULL>       <NULL>      
+#>  4 glm_poisson <trndng_g>   <tibble [43 × 5]> huber_loss 5193. <NULL>       <NULL>      
+#>  5 glm_poisson <trndng_g>   <tibble [43 × 5]> mae        5193. <NULL>       <NULL>      
+#>  6 glm_poisson <trndng_g>   <tibble [43 × 5]> rmse       5193. <NULL>       <NULL>      
+#>  7 glm_negbin  <trndng__>   <tibble [43 × 5]> huber_loss 5223. <NULL>       <NULL>      
+#>  8 glm_negbin  <trndng__>   <tibble [43 × 5]> mae        5224. <NULL>       <NULL>      
+#>  9 glm_negbin  <trndng__>   <tibble [43 × 5]> rmse       5224. <NULL>       <NULL>      
+#> 10 will_error  <trndng__>   <tibble [43 × 5]> <NA>         NA  <NULL>       <chr [1]>
 ```
 
 # Resources
@@ -114,7 +115,7 @@ auto_select$leaderboard
 ## Getting help online
 
 Bug reports and feature requests should be posted on *github* using the
-[*issue* system](https://github.com/reconhub/incidence2/issues). All
+[*issue* system](https://github.com/reconhub/trendeval/issues). All
 other questions should be posted on the **RECON** slack channel see
 <https://www.repidemicsconsortium.org/forum/> for details on how to
 join.
