@@ -21,12 +21,10 @@ test_that("evaluate_models returns with expected structure", {
 
   expect_equal(
     colnames(results),
-    c("model_name", "model", "data", "metric", "score", "warning", "error")
+    c("model_name", "model", "data", "warning", "error", "huber_loss", "rmse")
   )
   
   expect_setequal(results$model_name, names(models))
-
-  expect_setequal(results$metric, c("rmse", "huber_loss"))
 
 
 })
