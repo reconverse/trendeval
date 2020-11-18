@@ -66,7 +66,7 @@ evaluate_resampling <- function(model,
   
   res <- do.call(rbind, res)
   res <- tapply(res$.estimate, res$.metric, mean)
-  data.frame(metric = row.names(res), score = res)
+  tibble::tibble(metric = row.names(res), score = res)
 }
 
 
@@ -75,7 +75,7 @@ evaluate_resampling <- function(model,
 #' @aliases evaluate_aic
 evaluate_aic <- function(model, data) {
   full_model_fit <- model$fit(data)
-  data.frame(
+  tibble::tibble(
     metric = "aic",
     score = stats::AIC(full_model_fit$fitted_model)
   )
@@ -91,14 +91,27 @@ evaluate_models <- function(data, models, method = evaluate_resampling, ...) {
     function(model) safely(method)(model, data, ...)
   )
   out <- base_transpose(out)
-  out <- tibble::tibble(
-    model_name = names(models),
-    model = models,
-    data = list(data),
-    result = out[[1]],
-    warning = out[[2]],
-    error = out[[3]]
-  )
+
+  nms <- names(models)
+  if (is.null(nms)) {
+    out <- tibble::tibble(
+      model = models,
+      data = list(data),
+      result = out[[1]],
+      warning = out[[2]],
+      error = out[[3]]
+    )  
+  } else {
+    out <- tibble::tibble(
+      model_name = nms,
+      model = models,
+      data = list(data),
+      result = out[[1]],
+      warning = out[[2]],
+      error = out[[3]]
+    )
+  }
+  
   
   tidyr::unnest(out, "result", keep_empty = TRUE)
 }
