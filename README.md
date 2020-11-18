@@ -52,6 +52,14 @@ remotes::install_github("reconhub/trendeval", build_vignettes = TRUE)
 
 ``` r
 library(dplyr)      # for data manipulation
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library(outbreaks)  # for data
 library(trending)   # for trend fitting
 library(trendeval)  # for model selection
@@ -96,18 +104,18 @@ out <- capture.output( # no log output in readme :)
 
 results
 #> # A tibble: 10 x 7
-#>    model_name  model        data              metric     score warning      error       
-#>    <chr>       <named list> <list>            <chr>      <dbl> <named list> <named list>
-#>  1 simple      <trndng_l>   <tibble [43 × 5]> huber_loss 6902. <NULL>       <NULL>      
-#>  2 simple      <trndng_l>   <tibble [43 × 5]> mae        6903. <NULL>       <NULL>      
-#>  3 simple      <trndng_l>   <tibble [43 × 5]> rmse       6903. <NULL>       <NULL>      
-#>  4 glm_poisson <trndng_g>   <tibble [43 × 5]> huber_loss 5193. <NULL>       <NULL>      
-#>  5 glm_poisson <trndng_g>   <tibble [43 × 5]> mae        5193. <NULL>       <NULL>      
-#>  6 glm_poisson <trndng_g>   <tibble [43 × 5]> rmse       5193. <NULL>       <NULL>      
-#>  7 glm_negbin  <trndng__>   <tibble [43 × 5]> huber_loss 5223. <NULL>       <NULL>      
-#>  8 glm_negbin  <trndng__>   <tibble [43 × 5]> mae        5224. <NULL>       <NULL>      
-#>  9 glm_negbin  <trndng__>   <tibble [43 × 5]> rmse       5224. <NULL>       <NULL>      
-#> 10 will_error  <trndng__>   <tibble [43 × 5]> <NA>         NA  <NULL>       <chr [1]>
+#>    model_name  model       data            metric    score warning    error     
+#>    <chr>       <named lis> <list>          <chr>     <dbl> <named li> <named li>
+#>  1 simple      <trndng_l>  <tibble [43 × … huber_lo… 6902. <NULL>     <NULL>    
+#>  2 simple      <trndng_l>  <tibble [43 × … mae       6903. <NULL>     <NULL>    
+#>  3 simple      <trndng_l>  <tibble [43 × … rmse      6903. <NULL>     <NULL>    
+#>  4 glm_poisson <trndng_g>  <tibble [43 × … huber_lo… 5193. <NULL>     <NULL>    
+#>  5 glm_poisson <trndng_g>  <tibble [43 × … mae       5193. <NULL>     <NULL>    
+#>  6 glm_poisson <trndng_g>  <tibble [43 × … rmse      5193. <NULL>     <NULL>    
+#>  7 glm_negbin  <trndng__>  <tibble [43 × … huber_lo… 5223. <NULL>     <NULL>    
+#>  8 glm_negbin  <trndng__>  <tibble [43 × … mae       5224. <NULL>     <NULL>    
+#>  9 glm_negbin  <trndng__>  <tibble [43 × … rmse      5224. <NULL>     <NULL>    
+#> 10 will_error  <trndng__>  <tibble [43 × … <NA>        NA  <NULL>     <chr [1]>
 ```
 
 # Resources
