@@ -111,7 +111,13 @@ evaluate_models <- function(data, models, method = evaluate_resampling, ...) {
       error = out[[3]]
     )
   }
-  
-  
-  tidyr::unnest(out, "result", keep_empty = TRUE)
+
+  result <- tidyr::unnest(out, "result", keep_empty = TRUE)
+  result <- tidyr::pivot_wider(
+    result, 
+    names_from = "metric",
+    values_from = "score"
+  )
+  result$`NA` <- NULL
+  result
 }
