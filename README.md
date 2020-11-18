@@ -52,12 +52,9 @@ remotes::install_github("reconhub/trendeval", build_vignettes = TRUE)
 
 ``` r
 library(dplyr)      # for data manipulation
-library(tidyr)      # for data manipulation
-library(purrr)      # for data manipulation
 library(outbreaks)  # for data
 library(trending)   # for trend fitting
 library(trendeval)  # for model selection
-library(ggplot2)    # for plotting
 
 # load data
 data(covid19_england_nhscalls_2020)
@@ -111,6 +108,14 @@ results
 #> 6 glm_negbin       <trndng… <tibble [4… <NULL>    <NULL>       5238. 5238. 5238.
 #> 7 glm_negbin_week… <trndng… <tibble [4… <NULL>    <NULL>       5223. 5224. 5224.
 #> 8 will_error       <trndng… <tibble [4… <NULL>    <chr […        NA    NA    NA
+```
+
+### Example of how this output could then be used
+
+``` r
+library(tidyr)      # for data manipulation
+library(purrr)      # for data manipulation
+library(ggplot2)    # for plotting
 
 # Pull out the model with the lowest RMSE
 best_by_rmse <- 
@@ -132,7 +137,7 @@ best_by_rmse
 #>         data = data, ...)
 #>     model_fit(model, data)
 #> }
-#> <environment: 0x5624b7c7a9e8>
+#> <environment: 0x55e1f8135500>
 #> 
 #> attr(,"class")
 #> [1] "trending_glm"   "trending_model"
@@ -179,7 +184,7 @@ ggplot(out, aes(x = date, y = count)) +
   theme_bw()
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 # Resources
 
