@@ -90,8 +90,8 @@ pred_data <- select(dat[[1]], date, day, weekday)
 
 # assess the models using the evaluate_resampling and a variety of metrics
 results <- evaluate_models(
-  fitting_data, 
   models,
+  fitting_data, 
   method = evaluate_resampling,
   metrics = list(yardstick::rmse, yardstick::huber_loss, yardstick::mae)
 )
@@ -137,7 +137,7 @@ best_by_rmse
 #>         data = data, ...)
 #>     model_fit(model, data)
 #> }
-#> <environment: 0x55e1f8135500>
+#> <environment: 0x55647c335350>
 #> 
 #> attr(,"class")
 #> [1] "trending_glm"   "trending_model"

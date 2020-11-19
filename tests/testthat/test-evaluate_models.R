@@ -11,8 +11,8 @@ test_that("evaluate_models returns with expected structure", {
   )
   training_data <- mtcars
   results <- evaluate_models(
+    models,
     training_data,
-    models, 
     evaluate_resampling, 
     metrics = list(yardstick::rmse, yardstick::huber_loss), 
     v = 2, 

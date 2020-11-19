@@ -16,7 +16,7 @@ evaluate_resampling(
 
 evaluate_aic(model, data)
 
-evaluate_models(data, models, method = evaluate_resampling, ...)
+evaluate_models(models, data, method = evaluate_resampling, ...)
 }
 \arguments{
 \item{model}{A \link[trending:trending_model]{trending::trending_model} object.}
@@ -66,6 +66,22 @@ These functions wrap around existing functions from several
 packages. \code{\link[stats:AIC]{stats::AIC()}} is used in \code{\link[=evaluate_aic]{evaluate_aic()}}, and
 \code{\link[=evaluate_resampling]{evaluate_resampling()}} uses \code{\link[rsample:vfold_cv]{rsample::vfold_cv()}} for cross-validation and
 \code{\link[yardstick:rmse]{yardstick::rmse()}} to calculate RMSE.
+}
+\examples{
+x <- rnorm(100, mean = 0)
+y <- rpois(n = 100, lambda = exp(x + 1))
+dat <- data.frame(x = x, y = y)
+
+model <- trending::glm_model(y ~ x, poisson)
+evaluate_resampling(model, dat)
+evaluate_aic(model, dat)
+
+models <- list(
+  poisson_model = trending::glm_model(y ~ x, poisson),
+  linear_model = trending::lm_model(y ~ x)
+)
+evaluate_models(models, dat)
+
 }
 \seealso{
 \code{\link[stats:AIC]{stats::AIC()}} for computing AIC; \code{\link[rsample:vfold_cv]{rsample::vfold_cv()}} for cross

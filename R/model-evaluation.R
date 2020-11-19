@@ -45,6 +45,21 @@
 #'   rather than predictive power)
 #' @param ... further arguments passed to the underlying method (e.g. `metrics`,
 #'   `v`, `repeats`).
+#' 
+#' @examples 
+#' x <- rnorm(100, mean = 0)
+#' y <- rpois(n = 100, lambda = exp(x + 1))
+#' dat <- data.frame(x = x, y = y)
+#' 
+#' model <- trending::glm_model(y ~ x, poisson)
+#' evaluate_resampling(model, dat)
+#' evaluate_aic(model, dat)
+#' 
+#' models <- list(
+#'   poisson_model = trending::glm_model(y ~ x, poisson),
+#'   linear_model = trending::lm_model(y ~ x)
+#' )
+#' evaluate_models(models, dat)
 #'
 #' @importFrom stats predict
 #' @export
@@ -84,7 +99,7 @@ evaluate_aic <- function(model, data) {
 #' @export
 #' @rdname evaluate_models
 #' @aliases evaluate_models
-evaluate_models <- function(data, models, method = evaluate_resampling, ...) {
+evaluate_models <- function(models, data, method = evaluate_resampling, ...) {
   ellipsis::check_dots_used()
   out <- lapply(
     models,
