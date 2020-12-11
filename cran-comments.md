@@ -1,7 +1,7 @@
 ## Test environments
 * Fedora 33, local R installation, R 4.0.3 (2020-10-10)
 * Fedora 33, local R installation, R Under Development (2020-11-18 r79449)
-* win-builder (devel)
+* win-builder, R Under development (2020-11-17 r79439)
 
 ## R CMD check results
 

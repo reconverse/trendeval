@@ -3,9 +3,6 @@
 
 <!-- badges: start -->
 
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
@@ -15,11 +12,6 @@ coverage](https://codecov.io/gh/reconhub/trendeval/branch/master/graph/badge.svg
 [![R build
 status](https://github.com/reconhub/trendeval/workflows/R-CMD-check/badge.svg)](https://github.com/reconhub/trendeval/actions)
 <!-- badges: end -->
-
-<br> **<span style="color: red;">Disclaimer</span>**
-
-This package is a work in progress. Please reach out to the authors
-before using.
 
 # Trendeval
 
@@ -31,8 +23,8 @@ provide an intuitive interface on which other packages can be developed
 
 ## Installing the package
 
-Once it is released on [CRAN](https://CRAN.R-project.org), you will be
-able to install the stable version of the package with:
+You can install the stable version of this package from
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("trendeval")
@@ -137,7 +129,7 @@ best_by_rmse
 #>         data = data, ...)
 #>     model_fit(model, data)
 #> }
-#> <environment: 0x55647c335350>
+#> <environment: 0x55906ff72d50>
 #> 
 #> attr(,"class")
 #> [1] "trending_glm"   "trending_model"
