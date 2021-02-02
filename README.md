@@ -3,8 +3,6 @@
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/trendeval)](https://CRAN.R-project.org/package=trendeval)
 [![Codecov test
@@ -129,7 +127,7 @@ best_by_rmse
 #>         data = data, ...)
 #>     model_fit(model, data)
 #> }
-#> <environment: 0x55906ff72d50>
+#> <environment: 0x55e7220706f0>
 #> 
 #> attr(,"class")
 #> [1] "trending_glm"   "trending_model"
