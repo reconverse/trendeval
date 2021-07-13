@@ -26,8 +26,8 @@ Authors@R:
 Description: Provides a coherent interface for evaluating models fit with the
   trending package.  This package is part of the RECON
   (<https://www.repidemicsconsortium.org/>) toolkit for outbreak analysis.
-URL: https://github.com/reconhub/trendeval
-BugReports: https://github.com/reconhub/trendeval/issues
+URL: https://github.com/reconverse/trendeval
+BugReports: https://github.com/reconverse/trendeval/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
