@@ -51,7 +51,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/reconhub/trendeval/">
+  <a href="https://github.com/reconverse/trendeval/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -73,7 +73,7 @@
 <div id="trendeval" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#trendeval" class="anchor"></a>Trendeval</h1></div>
-<p><em>trendeval</em> aims to provide a coherent interface for evaluating models fit with the <a href="https://github.com/reconhub/trending">trending</a> package. Whilst it is useful in an interactive context, it’s main focus is to provide an intuitive interface on which other packages can be developed (e.g. <a href="https://github.com/reconhub/trendbreaker"><em>trendbreaker</em></a>).</p>
+<p><em>trendeval</em> aims to provide a coherent interface for evaluating models fit with the <a href="https://github.com/reconverse/trending">trending</a> package. Whilst it is useful in an interactive context, it’s main focus is to provide an intuitive interface on which other packages can be developed (e.g. <a href="https://github.com/reconhub/trendbreaker"><em>trendbreaker</em></a>).</p>
 <div id="installing-the-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installing-the-package" class="anchor"></a>Installing the package</h2>
@@ -85,7 +85,7 @@
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="op">}</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"reconhub/trendeval"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"reconverse/trendeval"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="model-selection-example" class="section level2">
 <h2 class="hasAnchor">
@@ -94,7 +94,7 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>      <span class="co"># for data manipulation</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks">outbreaks</a></span><span class="op">)</span>  <span class="co"># for data</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/trending">trending</a></span><span class="op">)</span>   <span class="co"># for trend fitting</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/trendeval">trendeval</a></span><span class="op">)</span>  <span class="co"># for model selection</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconverse/trendeval">trendeval</a></span><span class="op">)</span>  <span class="co"># for model selection</span>
 
 <span class="co"># load data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">covid19_england_nhscalls_2020</span><span class="op">)</span>
@@ -141,12 +141,12 @@
 <span class="co">#&gt;   model_name       model    data        warning   error   huber_loss   mae  rmse</span>
 <span class="co">#&gt;   &lt;chr&gt;            &lt;named &gt; &lt;list&gt;      &lt;named l&gt; &lt;named&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 simple           &lt;trndng… &lt;tibble [4… &lt;NULL&gt;    &lt;NULL&gt;       6902. 6903. 6903.</span>
-<span class="co">#&gt; 2 glm_poisson      &lt;trndng… &lt;tibble [4… &lt;NULL&gt;    &lt;NULL&gt;       5193. 5193. 5193.</span>
-<span class="co">#&gt; 3 glm_poisson_wee… &lt;trndng… &lt;tibble [4… &lt;NULL&gt;    &lt;NULL&gt;       5166. 5166. 5166.</span>
-<span class="co">#&gt; 4 glm_quasipoisson &lt;trndng… &lt;tibble [4… &lt;NULL&gt;    &lt;NULL&gt;       5193. 5193. 5193.</span>
-<span class="co">#&gt; 5 glm_quasipoisso… &lt;trndng… &lt;tibble [4… &lt;NULL&gt;    &lt;NULL&gt;       5166. 5166. 5166.</span>
+<span class="co">#&gt; 2 glm_poisson      &lt;trndng… &lt;tibble [4… &lt;chr [43… &lt;NULL&gt;       5193. 5193. 5193.</span>
+<span class="co">#&gt; 3 glm_poisson_wee… &lt;trndng… &lt;tibble [4… &lt;chr [1]&gt; &lt;chr […        NA    NA    NA </span>
+<span class="co">#&gt; 4 glm_quasipoisson &lt;trndng… &lt;tibble [4… &lt;chr [43… &lt;NULL&gt;       5193. 5193. 5193.</span>
+<span class="co">#&gt; 5 glm_quasipoisso… &lt;trndng… &lt;tibble [4… &lt;chr [1]&gt; &lt;chr […        NA    NA    NA </span>
 <span class="co">#&gt; 6 glm_negbin       &lt;trndng… &lt;tibble [4… &lt;NULL&gt;    &lt;NULL&gt;       5238. 5238. 5238.</span>
-<span class="co">#&gt; 7 glm_negbin_week… &lt;trndng… &lt;tibble [4… &lt;NULL&gt;    &lt;NULL&gt;       5223. 5224. 5224.</span>
+<span class="co">#&gt; 7 glm_negbin_week… &lt;trndng… &lt;tibble [4… &lt;NULL&gt;    &lt;chr […        NA    NA    NA </span>
 <span class="co">#&gt; 8 will_error       &lt;trndng… &lt;tibble [4… &lt;NULL&gt;    &lt;chr […        NA    NA    NA</span></code></pre></div>
 <div id="example-of-how-this-output-could-then-be-used" class="section level3">
 <h3 class="hasAnchor">
@@ -154,7 +154,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>      <span class="co"># for data manipulation</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>      <span class="co"># for data manipulation</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span>    <span class="co"># for plotting</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>    <span class="co"># for plotting</span>
 
 <span class="co"># Pull out the model with the lowest RMSE</span>
 <span class="va">best_by_rmse</span> <span class="op">&lt;-</span> 
@@ -167,19 +167,17 @@
 
 <span class="va">best_by_rmse</span>
 <span class="co">#&gt; $model_class</span>
-<span class="co">#&gt; [1] "glm"</span>
+<span class="co">#&gt; [1] "MASS::glm.nb"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $fit</span>
-<span class="co">#&gt; function (data) </span>
-<span class="co">#&gt; {</span>
-<span class="co">#&gt;     model &lt;- glm(formula = count ~ day + weekday, family = "quasipoisson", </span>
-<span class="co">#&gt;         data = data, ...)</span>
-<span class="co">#&gt;     model_fit(model, data)</span>
-<span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;environment: 0x55e7220706f0&gt;</span>
+<span class="co">#&gt; function(data) {</span>
+<span class="co">#&gt;         model &lt;- MASS::glm.nb(formula = .(formula), data = data, ...)</span>
+<span class="co">#&gt;         model_fit(model, data)</span>
+<span class="co">#&gt;       }</span>
+<span class="co">#&gt; &lt;environment: 0x7de70c0&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
-<span class="co">#&gt; [1] "trending_glm"   "trending_model"</span>
+<span class="co">#&gt; [1] "trending_glm_nb" "trending_model"</span>
 
 <span class="co"># Now let's look at the following 14 days as well</span>
 <span class="va">new_dat</span> <span class="op">&lt;-</span>
@@ -200,27 +198,27 @@
 <span class="co">#&gt; # A tibble: 71 x 9</span>
 <span class="co">#&gt;    date         day weekday   count estimate lower_ci upper_ci lower_pi upper_pi</span>
 <span class="co">#&gt;    &lt;date&gt;     &lt;int&gt; &lt;fct&gt;     &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 2020-04-02    15 rest_of_… 71917   58301.   53120.   63988.    40268    79935</span>
-<span class="co">#&gt;  2 2020-04-03    16 rest_of_… 63365   56280.   51398.   61625.    38771    77291</span>
-<span class="co">#&gt;  3 2020-04-04    17 weekend   52412   47107.   41966.   52878.    30644    67450</span>
-<span class="co">#&gt;  4 2020-04-05    18 weekend   54014   45474.   40576.   50962.    29459    65284</span>
-<span class="co">#&gt;  5 2020-04-06    19 monday    78996   62206.   54362.   71181.    41350    87955</span>
-<span class="co">#&gt;  6 2020-04-07    20 rest_of_… 62026   48871.   45017.   53054.    33258    67650</span>
-<span class="co">#&gt;  7 2020-04-08    21 rest_of_… 51692   47176.   43540.   51116.    31991    65458</span>
-<span class="co">#&gt;  8 2020-04-09    22 rest_of_… 40797   45540.   42108.   49253.    30765    63346</span>
-<span class="co">#&gt;  9 2020-04-10    23 rest_of_… 33946   43961.   40718.   47463.    29580    61313</span>
-<span class="co">#&gt; 10 2020-04-11    24 weekend   32269   36796.   33092.   40916.    23141    53834</span>
+<span class="co">#&gt;  1 2020-04-02    15 rest_of_… 71917   54614.   49046.   60813.    33412    80753</span>
+<span class="co">#&gt;  2 2020-04-03    16 rest_of_… 63365   52856.   47603.   58689.    33201    76164</span>
+<span class="co">#&gt;  3 2020-04-04    17 weekend   52412   51155.   46200.   56641.    32670    73787</span>
+<span class="co">#&gt;  4 2020-04-05    18 weekend   54014   49509.   44838.   54666.    31608    71643</span>
+<span class="co">#&gt;  5 2020-04-06    19 monday    78996   47915.   43515.   52761.    29932    69786</span>
+<span class="co">#&gt;  6 2020-04-07    20 rest_of_… 62026   46373.   42229.   50925.    29923    69140</span>
+<span class="co">#&gt;  7 2020-04-08    21 rest_of_… 51692   44881.   40979.   49155.    28976    65417</span>
+<span class="co">#&gt;  8 2020-04-09    22 rest_of_… 40797   43437.   39765.   47448.    27354    64013</span>
+<span class="co">#&gt;  9 2020-04-10    23 rest_of_… 33946   42039.   38585.   45802.    26546    60591</span>
+<span class="co">#&gt; 10 2020-04-11    24 weekend   32269   40686.   37437.   44216.    25768    58520</span>
 <span class="co">#&gt; # … with 61 more rows</span>
 
 <span class="co"># plot output</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">out</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_ribbon</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, ymin <span class="op">=</span> <span class="va">lower_ci</span>, ymax <span class="op">=</span> <span class="va">upper_ci</span><span class="op">)</span>,
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, ymin <span class="op">=</span> <span class="va">lower_ci</span>, ymax <span class="op">=</span> <span class="va">upper_ci</span><span class="op">)</span>,
               data <span class="op">=</span> <span class="va">out</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#BBB67E"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_ribbon</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, ymin <span class="op">=</span> <span class="va">lower_pi</span>, ymax <span class="op">=</span> <span class="va">upper_pi</span><span class="op">)</span>,
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, ymin <span class="op">=</span> <span class="va">lower_pi</span>, ymax <span class="op">=</span> <span class="va">upper_pi</span><span class="op">)</span>,
               data <span class="op">=</span> <span class="va">out</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#BBB67E"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2020-05-28"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2020-05-28"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -231,7 +229,7 @@
 <div id="getting-help-online" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-help-online" class="anchor"></a>Getting help online</h2>
-<p>Bug reports and feature requests should be posted on <em>github</em> using the <a href="https://github.com/reconhub/trendeval/issues"><em>issue</em> system</a>. All other questions should be posted on the <strong>RECON</strong> slack channel see <a href="https://www.repidemicsconsortium.org/forum/" class="uri">https://www.repidemicsconsortium.org/forum/</a> for details on how to join.</p>
+<p>Bug reports and feature requests should be posted on <em>github</em> using the <a href="https://github.com/reconverse/trendeval/issues"><em>issue</em> system</a>. All other questions should be posted on the <strong>RECON</strong> slack channel see <a href="https://www.repidemicsconsortium.org/forum/" class="uri">https://www.repidemicsconsortium.org/forum/</a> for details on how to join.</p>
 </div>
 </div>
 
@@ -243,9 +241,9 @@
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=trendeval">https://​cloud.r-project.org/​package=trendeval</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/reconhub/trendeval/">https://​github.com/​reconhub/​trendeval/​</a>
+<li>Browse source code at <br><a href="https://github.com/reconverse/trendeval/">https://​github.com/​reconverse/​trendeval/​</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/reconhub/trendeval/issues">https://​github.com/​reconhub/​trendeval/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/reconverse/trendeval/issues">https://​github.com/​reconverse/​trendeval/​issues</a>
 </li>
 </ul>
 </div>
@@ -269,8 +267,8 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://CRAN.R-project.org/package=trendeval"><img src="https://www.r-pkg.org/badges/version/trendeval" alt="CRAN status"></a></li>
-<li><a href="https://codecov.io/gh/reconhub/trendeval?branch=master"><img src="https://codecov.io/gh/reconhub/trendeval/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://github.com/reconhub/trendeval/actions"><img src="https://github.com/reconhub/trendeval/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/gh/reconverse/trendeval?branch=master"><img src="https://codecov.io/gh/reconverse/trendeval/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://github.com/reconverse/trendeval/actions"><img src="https://github.com/reconverse/trendeval/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 </ul>
 </div>
 </div>
