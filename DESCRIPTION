@@ -1,6 +1,6 @@
 Package: trendeval
 Title: Evaluate Trending Models
-Version: 0.0.1
+Version: 0.0.1.9000
 Authors@R:
     c(
       person(
@@ -45,3 +45,5 @@ Suggests:
     testthat,
     dplyr,
     outbreaks
+Remotes:
+    reconverse/trending
