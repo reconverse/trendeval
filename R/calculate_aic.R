@@ -4,23 +4,27 @@
 #'   the given input.
 #'
 #' @param x An \R object.
+#' @param as_tibble Should the result be returned as [tibble][tibble::tibble()]
+#'  (`as_tibble = TRUE`) or a list (`as_tibble = FALSE`).
 #' @param ... Not currently used.
 #'
-#' @details Specific methods are given for [`trending_fit`][trending::fit()]
-#'   objects and lists of these models. The default method applies
-#'   [stats::AIC()] directly.
+#' @details Specific methods are given for
+#'   [`trending_fit`][trending::fit.trending_model()] and
+#'   [`trending_fit_tbl`][trending::fit.trending_model()] objects. The default
+#'   method applies [stats::AIC()] directly.
 #'
-#' @return For a single [`trending_fit`][trending::fit()] input, the object
-#'   returned will be a list with entries:
+#' @return For a single [`trending_fit`][trending::fit()] input, if
+#'   `as_tibble = FALSE` the object returned will be a list with entries:
 #'
 #'   - metric: "AIC"
 #'   - result: the resulting AIC value fit (NULL if the calculation failed)
 #'   - warnings: any warnings generated during calculation
 #'   - errors: any errors generated during calculation
 #'
-#'   For a list of trending fit inputs a [tibble][tibble::tibble()] with one
-#'   row for each fitted model and corresponding to output generated with a
-#'   single model input.
+#'   If `as_tibble = TRUE`, or the input is a
+#'   [`trending_fit_tbl`][trending::fit.trending_model()], then the output
+#'   will be a [tibble][tibble::tibble()] with one row for each fitted model
+#'   columns corresponding to output generated with single model input.
 #'
 #' @author Tim Taylor
 #'
@@ -28,16 +32,15 @@
 #' x = rnorm(100, mean = 0)
 #' y = rpois(n = 100, lambda = exp(1.5 + 0.5*x))
 #' dat <- data.frame(x = x, y = y)
-#'
 #' poisson_model <- glm_model(y ~ x , family = "poisson")
-#' negbin_model <- glm.nb_model(y ~ x)
+#' negbin_model <- glm_nb_model(y ~ x)
 #' fitted_model <- fit(poisson_model, dat)
-#' fitted_models <- lapply(c(poisson_model, negbin_model), fit, data = dat)
+#' fitted_models <- fit(list(poisson_model, negbin_model), data = dat)
 #'
 #' calculate_aic(poisson_model, dat)
-#' calculate_aic(fitted_models)
-#'
 #' calculate_aic(fitted_model)
+#' calculate_aic(fitted_model, as_tibble = TRUE)
+#' calculate_aic(fitted_models)
 #'
 #' @export
 calculate_aic <- function(x, ...) {
@@ -55,34 +58,46 @@ calculate_aic.default <- function(x, ...) {
 
 # -------------------------------------------------------------------------
 
-
-#' @aliases calculate_aic.trending_model
+#' @aliases calculate_aic.trending_fit
 #' @rdname calculate_aic
 #' @export
-calculate_aic.trending_fit <- function(x, ...) {
-  fitted_model <- trending::get_fitted_model(x)
+calculate_aic.trending_fit <- function(x, as_tibble = FALSE, ...) {
+  fitted_model <- get_fitted_model(x)
+  calculate_aic_internal(fitted_model, as_tibble = as_tibble)
+}
+
+# -------------------------------------------------------------------------
+
+#' @aliases calculate_aic.trending_fit_tbl
+#' @rdname calculate_aic
+#' @export
+calculate_aic.trending_fit_tbl <- function(x, ...) {
+  fitted_models <- get_fitted_model(x)
+  res <- lapply(fitted_models, calculate_aic_internal, as_tibble = TRUE)
+  do.call(rbind, res)
+}
+
+# ------------------------------------------------------------------------- #
+# ------------------------------------------------------------------------- #
+# -------------------------------- INTERNALS ------------------------------ #
+# ------------------------------------------------------------------------- #
+# ------------------------------------------------------------------------- #
+
+calculate_aic_internal <- function(x, as_tibble) {
   f <- make_catcher(stats::AIC)
-  res <- f(fitted_model)
-  append(list(metric = "aic"), res)
-}
-
-
-#' @aliases calculate_aic.list
-#' @rdname calculate_aic
-#' @export
-calculate_aic.list <- function(x, data, ...) {
-  if (!all(vapply(x, inherits, logical(1), "trending_fit"))) {
-    stop("list entrys should be `trending_fit` objects", call. = FALSE)
+  res <- f(x)
+  if (as_tibble) {
+    result <- res$result
+    if (is.null(result)) result <- NA_real_
+    res <- tibble(
+      metric = "aic",
+      result = result,
+      warnings = list(res$warnings),
+      errors = list(res$errors)
+    )
+  } else {
+    res <- c(list(metric = "aic"), res)
   }
-  res <- lapply(x, calculate_aic.trending_fit)
-  res <- lapply(res, function(x) tibble::tibble(x[[1]], list(x[[2]]), list(x[[3]]), list(x[[4]])))
-  res <- do.call(rbind, res)
-  res <- setNames(res, c("metric", "result", "warnings", "errors"))
-  model_name <- names(x)
-  if (!is.null(model_name)) {
-    res <- cbind(model_name, res)
-  }
-  tidyr::unnest(res, cols = c(metric, result))
+  res
 }
-
 
