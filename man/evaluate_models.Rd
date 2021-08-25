@@ -9,7 +9,8 @@
 evaluate_resampling(
   model,
   data,
-  metrics = list(yardstick::rmse),
+  metric = c("rmse", "rsq", "mae"),
+  metric_arguments = list(na.rm = TRUE),
   v = nrow(data),
   repeats = 1
 )
@@ -23,10 +24,6 @@ evaluate_models(models, data, method = evaluate_resampling, ...)
 
 \item{data}{a \code{data.frame} containing data (including the response variable
 and all predictors) used in \code{model}}
-
-\item{metrics}{a list of functions assessing model fit, with a similar
-interface to \code{\link[yardstick:rmse]{yardstick::rmse()}}; see
-\url{https://yardstick.tidymodels.org/} for more information}
 
 \item{v}{the number of equally sized data partitions to be used for K-fold
 cross-validation; \code{v} cross-validations will be performed, each using \code{v - 1} partition as training set, and the remaining partition as testing set.
@@ -48,6 +45,10 @@ rather than predictive power)}
 
 \item{...}{further arguments passed to the underlying method (e.g. \code{metrics},
 \code{v}, \code{repeats}).}
+
+\item{metrics}{a list of functions assessing model fit, with a similar
+interface to \code{\link[yardstick:rmse]{yardstick::rmse()}}; see
+\url{https://yardstick.tidymodels.org/} for more information}
 }
 \description{
 These functions provide tools for evaluating \code{\link[trending:trending_model]{trending::trending_model}}s,

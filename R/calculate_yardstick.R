@@ -68,3 +68,4 @@ calculate_yardstick_trending_model <- function(x, data, na.rm, as_tibble, metric
     as_tibble = as_tibble,
     metric = metric)
 }
+

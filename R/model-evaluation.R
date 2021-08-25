@@ -15,13 +15,13 @@
 #'   packages. [stats::AIC()] is used in [evaluate_aic()], and
 #'   [evaluate_resampling()] uses [rsample::vfold_cv()] for cross-validation and
 #'   [yardstick::rmse()] to calculate RMSE.
-#' 
+#'
 #' @seealso [stats::AIC()] for computing AIC; [rsample::vfold_cv()] for cross
 #'   validation; [yardstick::rmse()] for calculating RMSE; `yardstick` also
 #'   implements a range of other metrics for assessing model fit outlined at
 #'   \url{https://yardstick.tidymodels.org/}; [trending::trending_model()] for
 #'   the different ways to build the model objects.
-#' 
+#'
 #' @param model A [trending::trending_model] object.
 #' @param data a `data.frame` containing data (including the response variable
 #'   and all predictors) used in `model`
@@ -45,44 +45,80 @@
 #'   rather than predictive power)
 #' @param ... further arguments passed to the underlying method (e.g. `metrics`,
 #'   `v`, `repeats`).
-#' 
-#' @examples 
+#'
+#' @examples
 #' x <- rnorm(100, mean = 0)
 #' y <- rpois(n = 100, lambda = exp(x + 1))
 #' dat <- data.frame(x = x, y = y)
-#' 
+#'
 #' model <- trending::glm_model(y ~ x, poisson)
 #' evaluate_resampling(model, dat)
 #' evaluate_aic(model, dat)
-#' 
+#'
 #' models <- list(
 #'   poisson_model = trending::glm_model(y ~ x, poisson),
 #'   linear_model = trending::lm_model(y ~ x)
 #' )
 #' evaluate_models(models, dat)
 #'
-#' @importFrom stats predict
 #' @export
-#' @rdname evaluate_models
-#' @aliases evaluate_resampling
-evaluate_resampling <- function(model,
-                                data,
-                                metrics = list(yardstick::rmse),
-                                v = nrow(data),
-                                repeats = 1) {
-  training_split <- rsample::vfold_cv(data, v = v, repeats = repeats)
-  metrics <- do.call(yardstick::metric_set, metrics)
-  response <- trending::get_response(model)
-  res <- lapply(training_split$splits, function(split) {
-    fit <- trending::fit(model, rsample::analysis(split))
-    validation <- predict(fit, rsample::assessment(split))
-    metrics(validation, validation[[response]], validation$estimate)
-  })
-  
-  res <- do.call(rbind, res)
-  res <- tapply(res$.estimate, res$.metric, mean)
-  tibble::tibble(metric = row.names(res), score = res)
+evaluate_resampling <- function(x, ...) {
+  UseMethod("evaluate_resampling")
 }
+
+# -------------------------------------------------------------------------
+
+#' @aliases evaluate_resampling.default
+#' @rdname evaluate_resampling
+#' @export
+evaluate_resampling.default <- function(x, ...) {
+  not_implemented(x)
+}
+
+# -------------------------------------------------------------------------
+
+#' @aliases evaluate_resampling.trending_model
+#' @rdname evaluate_resampling
+#' @export
+evaluate_resampling.trending_model <- function(
+    x,
+    data,
+    metric = c("rmse", "rsq", "mae"),
+    metric_arguments = list(na.rm = TRUE),
+    v = nrow(data),
+    repeats = 1
+) {
+  metric <- match.arg(metric)
+  envir <- parent.frame(1)
+  groups <- rsample::vfold_cv(data, v = v, repeats = repeats)
+  fun <- sprintf("calculate_%s", metric)
+  fun <- get(fun, mode = "function", envir = envir)
+  res <- lapply(
+    groups$splits,
+    function(split) {
+      splitfit <- fit(x, rsample::analysis(split))
+      validation <- predict(splitfit, rsample::assessment(split))
+      metric_results <- do.call(
+        fun,
+        args = append(list(x=validation), metric_arguments)
+      )
+      tibble::tibble(
+        metric_results,
+        model = splitfit[1],
+        fitting_warnings = splitfit[2],
+        fitting_errors = splitfit[3],
+        pred = validation[1],
+        predicting_warnings = validation[2],
+        predicting_errors = validation[3]
+      )
+    }
+  )
+  res <- do.call(rbind, res)
+  structure(res, class = c("trendeval_resampling", class(res)))
+}
+
+
+
 
 
 #' @export
@@ -115,7 +151,7 @@ evaluate_models <- function(models, data, method = evaluate_resampling, ...) {
       result = out[[1]],
       warning = out[[2]],
       error = out[[3]]
-    )  
+    )
   } else {
     out <- tibble::tibble(
       model_name = nms,
@@ -129,7 +165,7 @@ evaluate_models <- function(models, data, method = evaluate_resampling, ...) {
 
   result <- tidyr::unnest(out, "result", keep_empty = TRUE)
   result <- tidyr::pivot_wider(
-    result, 
+    result,
     names_from = "metric",
     values_from = "score"
   )
