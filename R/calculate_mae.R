@@ -1,12 +1,11 @@
-#' Generic for calculating the mean absolute error
+#' Generic for calculating the root mean squared error
 #'
-#' Generic `calculate_mae()` returns the Akaike's 'An Information Criterion' for
-#'   the given input.
+#' Generic `calculate_mae()` returns the root mean square error for the given
+#'   input.
 #'
-#' @param x An \R object.
-#' @param as_tibble Should the result be returned as [tibble][tibble::tibble()]
-#'  (`as_tibble = TRUE`) or a list (`as_tibble = FALSE`).
-#' @param ... Not currently used.
+#' @inheritParams calculate_rmse
+#' @param na.rm Should NA values should be removed before calculation of metric
+#'   (passed to the underlying function [yardstick::mae_vec]).
 #'
 #' @details Specific methods are given for [`trending_model`] (and lists of
 #'   these), [`trending_fit`][trending::fit.trending_model()],
@@ -20,7 +19,7 @@
 #'   `as_tibble = FALSE` the object returned will be a list with entries:
 #'
 #'   - metric: "mae"
-#'   - result: the resulting mae (NULL if the calculation failed)
+#'   - result: the resulting mae value (NULL if the calculation failed)
 #'   - warnings: any warnings generated during calculation
 #'   - errors: any errors generated during calculation
 #'
@@ -47,10 +46,14 @@
 #' @export
 calculate_mae <- function(x, ...) UseMethod("calculate_mae")
 
+# -------------------------------------------------------------------------
+
 #' @aliases calculate_mae.default
 #' @rdname calculate_mae
 #' @export
 calculate_mae.default <- function(x, ...) not_implemented(x)
+
+# -------------------------------------------------------------------------
 
 #' @aliases calculate_mae.trending_model
 #' @rdname calculate_mae
@@ -65,6 +68,8 @@ calculate_mae.trending_model <- function(x, data, na.rm = TRUE, as_tibble = TRUE
   )
 }
 
+# -------------------------------------------------------------------------
+
 #' @aliases calculate_mae.list
 #' @rdname calculate_mae
 #' @export
@@ -76,6 +81,7 @@ calculate_mae.list <- function(x, data, na.rm = TRUE, ...) {
   calculate_mae(res, na.rm = na.rm)
 }
 
+# -------------------------------------------------------------------------
 
 #' @aliases calculate_mae.trending_fit
 #' @rdname calculate_mae
@@ -90,6 +96,8 @@ calculate_mae.trending_fit <- function(x, new_data, na.rm = TRUE, as_tibble = TR
   )
 }
 
+# -------------------------------------------------------------------------
+
 #' @aliases calculate_mae.trending_fit_tbl
 #' @rdname calculate_mae
 #' @export
@@ -102,35 +110,34 @@ calculate_mae.trending_fit_tbl <- function(x, new_data, na.rm = TRUE, ...) {
   )
 }
 
+# -------------------------------------------------------------------------
+
 #' @aliases calculate_mae.trending_predict
 #' @rdname calculate_mae
 #' @export
 calculate_mae.trending_predict <- function(x, na.rm = TRUE, as_tibble = TRUE, ...) {
-  result <- trending::get_result(x)
-  calculate_yardstick(
-    x = result,
-    truth = get_response(result),
-    estimate = get_estimate(result),
-    metric = "mae_vec",
-    na.rm = TRUE,
-    as_tibble = as_tibble
+  calculate_yardstick_trending_predict(
+    x = x,
+    na.rm = na.rm,
+    as_tibble = as_tibble,
+    metric = "mae_vec"
   )
 }
+
+# -------------------------------------------------------------------------
 
 #' @aliases calculate_mae.trending_predict_tbl
 #' @rdname calculate_mae
 #' @export
 calculate_mae.trending_predict_tbl <- function(x, na.rm = TRUE, ...) {
-  result <- trending::get_result(x)
-  calculate_yardstick(
-    x = result,
-    truth = get_response(result),
-    estimate = get_estimate(result),
-    metric = "mae_vec",
-    na.rm = TRUE,
-    as_tibble = as_tibble
+  calculate_yardstick_trending_predict_tbl(
+    x = x,
+    na.rm = na.rm,
+    metric = "mae_vec"
   )
 }
+
+# -------------------------------------------------------------------------
 
 #' @aliases calculate_mae.trending_prediction
 #' @rdname calculate_mae

@@ -3,6 +3,7 @@
 \name{calculate_aic}
 \alias{calculate_aic}
 \alias{calculate_aic.default}
+\alias{calculate_aic.trending_model}
 \alias{calculate_aic.trending_fit}
 \alias{calculate_aic.trending_fit_tbl}
 \title{Generic for calculating the AIC}
@@ -10,6 +11,8 @@
 calculate_aic(x, ...)
 
 \method{calculate_aic}{default}(x, ...)
+
+\method{calculate_aic}{trending_model}(x, data, as_tibble = FALSE, ...)
 
 \method{calculate_aic}{trending_fit}(x, as_tibble = FALSE, ...)
 
@@ -19,6 +22,9 @@ calculate_aic(x, ...)
 \item{x}{An \R object.}
 
 \item{...}{Not currently used.}
+
+\item{data}{a \code{data.frame} containing data (including the response variable
+and all predictors) used in the specified model.}
 
 \item{as_tibble}{Should the result be returned as \link[tibble:tibble]{tibble}
 (\code{as_tibble = TRUE}) or a list (\code{as_tibble = FALSE}).}

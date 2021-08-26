@@ -10,7 +10,7 @@
 \alias{calculate_rsq.trending_predict}
 \alias{calculate_rsq.trending_predict_tbl}
 \alias{calculate_rsq.trending_prediction}
-\title{Generic for calculating R squared}
+\title{Generic for calculating the root mean squared error}
 \usage{
 calculate_rsq(x, ...)
 
@@ -35,15 +35,24 @@ calculate_rsq(x, ...)
 
 \item{...}{Not currently used.}
 
+\item{data}{a \code{data.frame} containing data (including the response variable
+and all predictors) used in the specified model.}
+
+\item{na.rm}{Should NA values should be removed before calculation of metric
+(passed to the underlying function \link[yardstick:rsq]{yardstick::rsq_vec}).}
+
 \item{as_tibble}{Should the result be returned as \link[tibble:tibble]{tibble}
 (\code{as_tibble = TRUE}) or a list (\code{as_tibble = FALSE}).}
+
+\item{new_data}{a \code{data.frame} containing data (including the response variable
+and all predictors) on which to assess the model.}
 }
 \value{
 For a single \code{\link[trending:fit]{trending_fit}} input, if
 \code{as_tibble = FALSE} the object returned will be a list with entries:
 \itemize{
 \item metric: "rsq"
-\item result: the resulting AIC value fit (NULL if the calculation failed)
+\item result: the resulting rsq value (NULL if the calculation failed)
 \item warnings: any warnings generated during calculation
 \item errors: any errors generated during calculation
 }
@@ -53,13 +62,12 @@ will be a \link[tibble:tibble]{tibble} with one row for each fitted model
 columns corresponding to output generated with single model input.
 }
 \description{
-Generic \code{calculate_rsq()} returns R squared for the given input.
+Generic \code{calculate_rsq()} returns the root mean square error for the given
+input.
 }
 \details{
-Uses the \code{yardstick} package to "calculate the coefficient of
-determination using correlation".  Specific methods are given for
-\code{\link{trending_model}} (and lists of these),
-\code{\link[trending:fit.trending_model]{trending_fit}},
+Specific methods are given for \code{\link{trending_model}} (and lists of
+these), \code{\link[trending:fit.trending_model]{trending_fit}},
 \code{\link[trending:fit.trending_model]{trending_fit_tbl}},
 \code{\link[trending:predict.trending_fit]{trending_predict_tbl}},
 \code{\link[trending:predict.trending_fit_tbl]{trending_predict_tbl}} and

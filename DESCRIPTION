@@ -37,12 +37,9 @@ Imports:
     trending,
     yardstick,
     rsample,
-    ellipsis,
     stats,
-    tidyr,
     tibble
 Suggests: 
-    testthat,
     dplyr,
     outbreaks
 Remotes:

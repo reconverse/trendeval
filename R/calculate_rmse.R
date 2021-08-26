@@ -1,12 +1,13 @@
 #' Generic for calculating the root mean squared error
 #'
-#' Generic `calculate_rmse()` returns the Akaike's 'An Information Criterion' for
-#'   the given input.
+#' Generic `calculate_rmse()` returns the root mean square error for the given
+#'   input.
 #'
-#' @param x An \R object.
-#' @param as_tibble Should the result be returned as [tibble][tibble::tibble()]
-#'  (`as_tibble = TRUE`) or a list (`as_tibble = FALSE`).
-#' @param ... Not currently used.
+#' @inheritParams calculate_aic
+#' @param new_data a `data.frame` containing data (including the response variable
+#'   and all predictors) on which to assess the model.
+#' @param na.rm Should NA values should be removed before calculation of metric
+#'   (passed to the underlying function [yardstick::rmse_vec]).
 #'
 #' @details Specific methods are given for [`trending_model`] (and lists of
 #'   these), [`trending_fit`][trending::fit.trending_model()],
@@ -47,10 +48,14 @@
 #' @export
 calculate_rmse <- function(x, ...) UseMethod("calculate_rmse")
 
+# -------------------------------------------------------------------------
+
 #' @aliases calculate_rmse.default
 #' @rdname calculate_rmse
 #' @export
 calculate_rmse.default <- function(x, ...) not_implemented(x)
+
+# -------------------------------------------------------------------------
 
 #' @aliases calculate_rmse.trending_model
 #' @rdname calculate_rmse
@@ -65,6 +70,8 @@ calculate_rmse.trending_model <- function(x, data, na.rm = TRUE, as_tibble = TRU
   )
 }
 
+# -------------------------------------------------------------------------
+
 #' @aliases calculate_rmse.list
 #' @rdname calculate_rmse
 #' @export
@@ -76,6 +83,7 @@ calculate_rmse.list <- function(x, data, na.rm = TRUE, ...) {
   calculate_rmse(res, na.rm = na.rm)
 }
 
+# -------------------------------------------------------------------------
 
 #' @aliases calculate_rmse.trending_fit
 #' @rdname calculate_rmse
@@ -90,6 +98,8 @@ calculate_rmse.trending_fit <- function(x, new_data, na.rm = TRUE, as_tibble = T
   )
 }
 
+# -------------------------------------------------------------------------
+
 #' @aliases calculate_rmse.trending_fit_tbl
 #' @rdname calculate_rmse
 #' @export
@@ -102,35 +112,34 @@ calculate_rmse.trending_fit_tbl <- function(x, new_data, na.rm = TRUE, ...) {
   )
 }
 
+# -------------------------------------------------------------------------
+
 #' @aliases calculate_rmse.trending_predict
 #' @rdname calculate_rmse
 #' @export
 calculate_rmse.trending_predict <- function(x, na.rm = TRUE, as_tibble = TRUE, ...) {
-  result <- trending::get_result(x)
-  calculate_yardstick(
-    x = result,
-    truth = get_response(result),
-    estimate = get_estimate(result),
-    metric = "rmse_vec",
-    na.rm = TRUE,
-    as_tibble = as_tibble
+  calculate_yardstick_trending_predict(
+    x = x,
+    na.rm = na.rm,
+    as_tibble = as_tibble,
+    metric = "rmse_vec"
   )
 }
+
+# -------------------------------------------------------------------------
 
 #' @aliases calculate_rmse.trending_predict_tbl
 #' @rdname calculate_rmse
 #' @export
 calculate_rmse.trending_predict_tbl <- function(x, na.rm = TRUE, ...) {
-  result <- trending::get_result(x)
-  calculate_yardstick(
-    x = result,
-    truth = get_response(result),
-    estimate = get_estimate(result),
-    metric = "rmse_vec",
-    na.rm = TRUE,
-    as_tibble = as_tibble
+  calculate_yardstick_trending_predict_tbl(
+    x = x,
+    na.rm = na.rm,
+    metric = "rmse_vec"
   )
 }
+
+# -------------------------------------------------------------------------
 
 #' @aliases calculate_rmse.trending_prediction
 #' @rdname calculate_rmse

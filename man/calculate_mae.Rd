@@ -10,7 +10,7 @@
 \alias{calculate_mae.trending_predict}
 \alias{calculate_mae.trending_predict_tbl}
 \alias{calculate_mae.trending_prediction}
-\title{Generic for calculating the mean absolute error}
+\title{Generic for calculating the root mean squared error}
 \usage{
 calculate_mae(x, ...)
 
@@ -35,15 +35,24 @@ calculate_mae(x, ...)
 
 \item{...}{Not currently used.}
 
+\item{data}{a \code{data.frame} containing data (including the response variable
+and all predictors) used in the specified model.}
+
+\item{na.rm}{Should NA values should be removed before calculation of metric
+(passed to the underlying function \link[yardstick:mae]{yardstick::mae_vec}).}
+
 \item{as_tibble}{Should the result be returned as \link[tibble:tibble]{tibble}
 (\code{as_tibble = TRUE}) or a list (\code{as_tibble = FALSE}).}
+
+\item{new_data}{a \code{data.frame} containing data (including the response variable
+and all predictors) on which to assess the model.}
 }
 \value{
 For a single \code{\link[trending:fit]{trending_fit}} input, if
 \code{as_tibble = FALSE} the object returned will be a list with entries:
 \itemize{
 \item metric: "mae"
-\item result: the resulting mae (NULL if the calculation failed)
+\item result: the resulting mae value (NULL if the calculation failed)
 \item warnings: any warnings generated during calculation
 \item errors: any errors generated during calculation
 }
@@ -53,8 +62,8 @@ will be a \link[tibble:tibble]{tibble} with one row for each fitted model
 columns corresponding to output generated with single model input.
 }
 \description{
-Generic \code{calculate_mae()} returns the Akaike's 'An Information Criterion' for
-the given input.
+Generic \code{calculate_mae()} returns the root mean square error for the given
+input.
 }
 \details{
 Specific methods are given for \code{\link{trending_model}} (and lists of

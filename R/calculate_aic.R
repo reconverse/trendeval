@@ -4,6 +4,8 @@
 #'   the given input.
 #'
 #' @param x An \R object.
+#' @param data a `data.frame` containing data (including the response variable
+#'   and all predictors) used in the specified model.
 #' @param as_tibble Should the result be returned as [tibble][tibble::tibble()]
 #'  (`as_tibble = TRUE`) or a list (`as_tibble = FALSE`).
 #' @param ... Not currently used.
@@ -54,6 +56,30 @@ calculate_aic <- function(x, ...) {
 #' @export
 calculate_aic.default <- function(x, ...) {
   stats::AIC(x)
+}
+
+# -------------------------------------------------------------------------
+
+#' @aliases calculate_aic.trending_model
+#' @rdname calculate_aic
+#' @export
+calculate_aic.trending_model <- function(x, data, as_tibble = FALSE, ...) {
+  tmp <- fit(x, data)
+  fitted_model <- get_fitted_model(tmp)
+  calculate_aic_internal(fitted_model, as_tibble = as_tibble)
+}
+
+# -------------------------------------------------------------------------
+
+#' @aliases calculate_rmse.list
+#' @rdname calculate_rmse
+#' @export
+calculate_aic.list <- function(x, data, ...) {
+  if (!all(vapply(x, inherits, logical(1), "trending_model"))) {
+    stop("list entries should be `trending_model` objects", call. = FALSE)
+  }
+  res <- fit(x, data)
+  calculate_aic(res)
 }
 
 # -------------------------------------------------------------------------

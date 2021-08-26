@@ -59,6 +59,43 @@ calculate_yardstick_trending_fit_tbl <- function(x, new_data, na.rm, metric, ...
 
 # -------------------------------------------------------------------------
 
+calculate_yardstick_trending_predict <- function(x, na.rm, as_tibble, metric) {
+  result <- get_result(x)
+  calculate_yardstick(
+    x = result,
+    truth = get_response(result),
+    estimate = get_estimate(result),
+    metric = metric,
+    na.rm = na.rm,
+    as_tibble = as_tibble
+  )
+}
+
+# -------------------------------------------------------------------------
+
+calculate_yardstick_trending_predict_tbl <- function(x, na.rm, metric, ...) {
+  result <- get_result(x)
+  truth <- get_response(x)
+  estimate <- get_estimate(x)
+  res <- .mapply(
+    FUN = calculate_yardstick,
+    dots = list(
+      x = result,
+      truth = truth,
+      estimate = estimate
+    ),
+    MoreArgs = list(
+      metric = metric,
+      na.rm = na.rm,
+      as_tibble = TRUE
+    )
+  )
+  do.call(rbind, res)
+}
+
+
+# -------------------------------------------------------------------------
+
 calculate_yardstick_trending_model <- function(x, data, na.rm, as_tibble, metric) {
   fitt <- fit(x, data)
   calculate_yardstick_trending_fit(
