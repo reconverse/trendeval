@@ -118,7 +118,9 @@ new_dat <-
   filter(date > "2020-05-28", date <= "2020-06-11") %>% 
   group_by(date, day, weekday) %>%
   summarise(count = sum(count), .groups = "drop")
+
 all_dat <- bind_rows(pathways_recent, new_dat)
+
 out <- 
   best_by_rmse %>%  
   fit(pathways_recent) %>% 
@@ -139,6 +141,7 @@ out
 #>  9 2020-04-10    23 rest_of_week 33946   43961.   40718.   47463.    29580    61313
 #> 10 2020-04-11    24 weekend      32269   36796.   33092.   40916.    23141    53834
 #> # … with 61 more rows
+
 # plot output
 ggplot(out, aes(x = date, y = count)) +
   geom_line() +

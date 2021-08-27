@@ -117,13 +117,16 @@ new_dat <-
   filter(date > "2020-05-28", date <= "2020-06-11") %>% 
   group_by(date, day, weekday) %>%
   summarise(count = sum(count), .groups = "drop")
+
 all_dat <- bind_rows(pathways_recent, new_dat)
+
 out <- 
   best_by_rmse %>%  
   fit(pathways_recent) %>% 
   predict(all_dat) %>%  
   pluck(1)
 out
+
 # plot output
 ggplot(out, aes(x = date, y = count)) +
   geom_line() +
