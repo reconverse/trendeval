@@ -96,6 +96,9 @@ evaluate_resampling.list <- function(
   if (!all(vapply(x, inherits, logical(1), "trending_model"))) {
     stop("list entries should be `trending_model` objects", call. = FALSE)
   }
+  nms <- names(x)
+  if (is.null(nms)) nms <- paste0("model_", 1:length(x))
+  nms <- rep(nms, each = v*repeats)
   res <- lapply(
     x,
     evaluate_resampling,
@@ -105,7 +108,26 @@ evaluate_resampling.list <- function(
     v = v,
     repeats = repeats
   )
-  do.call(rbind, res)
+  out <- do.call(rbind, res)
+  out <- tibble(model_name = nms, out)
+  class(out) <- c("trendeval_resampling", class(out))
+  out
+}
+
+#' @export
+summary.trendeval_resampling <- function(object, ...) {
+  res <- tapply(object$result, object$model_name, mean, na.rm = TRUE, simplify = FALSE)
+  nas <- tapply(object$result, object$model_name, is.na, simplify = FALSE)
+  splits_averaged <- vapply(nas, length, numeric(1))
+  nas_removed <- vapply(nas, sum, numeric(1))
+  value <- unlist(res)
+  tibble(
+    model_name = names(value),
+    metric = object$metric[1],
+    value,
+    splits_averaged,
+    nas_removed
+  )
 }
 
 # ------------------------------------------------------------------------- #
