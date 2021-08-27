@@ -148,10 +148,11 @@ evaluate_over_splits <- function(model, splits, fun, fun_args) {
       )
       tibble::tibble(
         metric_results,
-        fitted_model = splitfit[1],
+        model = list(model),
+      #  fitted_model = splitfit[1],
         fitting_warnings = splitfit[2],
         fitting_errors = splitfit[3],
-        pred = validation[1],
+     #   pred = validation[1],
         predicting_warnings = validation[2],
         predicting_errors = validation[3]
       )
