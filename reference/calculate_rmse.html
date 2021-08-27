@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generic for calculating the root mean squared error — calculate_aic.list • trendeval</title>
+<title>Generic for calculating the root mean squared error — calculate_rmse • trendeval</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Generic for calculating the root mean squared error — calculate_aic.list" />
+<meta property="og:title" content="Generic for calculating the root mean squared error — calculate_rmse" />
 <meta property="og:description" content="Generic calculate_rmse() returns the root mean square error for the given
 input." />
 
@@ -110,7 +110,7 @@ input." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Generic for calculating the root mean squared error</h1>
-    <small class="dont-index">Source: <a href='https://github.com/reconverse/trendeval/blob/master/R/calculate_aic.R'><code>R/calculate_aic.R</code></a>, <a href='https://github.com/reconverse/trendeval/blob/master/R/calculate_rmse.R'><code>R/calculate_rmse.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/reconverse/trendeval/blob/master/R/calculate_rmse.R'><code>R/calculate_rmse.R</code></a></small>
     <div class="hidden name"><code>calculate_rmse.Rd</code></div>
     </div>
 
@@ -119,10 +119,7 @@ input." />
 input.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for list</span>
-<span class='fu'><a href='calculate_aic.html'>calculate_aic</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>data</span>, <span class='va'>...</span><span class='op'>)</span>
-
-<span class='fu'>calculate_rmse</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>calculate_rmse</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for default</span>
 <span class='fu'>calculate_rmse</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
@@ -156,13 +153,13 @@ input.</p>
       <td><p>An <span style="R">R</span> object.</p></td>
     </tr>
     <tr>
+      <th>...</th>
+      <td><p>Not currently used.</p></td>
+    </tr>
+    <tr>
       <th>data</th>
       <td><p>a <code>data.frame</code> containing data (including the response variable
 and all predictors) used in the specified model.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Not currently used.</p></td>
     </tr>
     <tr>
       <th>na.rm</th>
