@@ -1,5 +1,15 @@
 calculate_yardstick <- function(x, truth, estimate, metric, na.rm, as_tibble) {
-  fun <- match.fun(metric)
+  # for some reason match.fun was not working in some situations, likely due
+  # to the funky messing around with environments.
+  #fun <- match.fun(metric)
+  fun <- switch(
+    metric,
+    mae_vec = mae_vec,
+    rmse_vec = rmse_vec,
+    rsq_vec = rsq_vec,
+    stop("invalid function call in calculate_yardstick")
+  )
+
   f <- make_catcher(fun)
   metric <- sub("_vec", "", metric, perl = TRUE)
   truth <- x[[truth]]
@@ -39,6 +49,7 @@ calculate_yardstick_trending_fit <- function(x, new_data, na.rm, as_tibble, metr
 # -------------------------------------------------------------------------
 
 calculate_yardstick_trending_fit_tbl <- function(x, new_data, na.rm, metric, ...) {
+  metric <- metric
   pred <- predict(x, new_data, add_pi = FALSE)
   result <- get_result(pred)
   res <- .mapply(

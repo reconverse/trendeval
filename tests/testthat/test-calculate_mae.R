@@ -1,4 +1,4 @@
-test_that("calculate_aic works as expected", {
+test_that("calculate_mae works as expected", {
 
   # setup
   x <- rnorm(100, mean = 0)
