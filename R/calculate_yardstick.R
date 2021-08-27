@@ -36,10 +36,12 @@ calculate_yardstick_trending_fit <- function(x, new_data, na.rm, as_tibble, metr
   if (missing(new_data)) new_data <- get_fitted_data(x)
   pred <- predict(x, new_data, add_pi = FALSE)
   result <- get_result(pred)
+  truth <- try_na(try(get_response(result), silent = TRUE))
+  estimate <- try_na(try(get_estimate(result), silent = TRUE))
   calculate_yardstick(
     x = result,
-    truth = get_response(result),
-    estimate = get_estimate(result),
+    truth = truth,
+    estimate = estimate,
     metric = metric,
     na.rm = na.rm,
     as_tibble = as_tibble
@@ -52,11 +54,12 @@ calculate_yardstick_trending_fit_tbl <- function(x, new_data, na.rm, metric, ...
   metric <- metric
   pred <- predict(x, new_data, add_pi = FALSE)
   result <- get_result(pred)
+  truth <- try_na(try(get_response(x), silent = TRUE))
   res <- .mapply(
     FUN = calculate_yardstick,
     dots = list(
       x = result,
-      truth = get_response(x)
+      truth = truth
     ),
     MoreArgs = list(
       estimate = "estimate",
@@ -75,10 +78,12 @@ calculate_yardstick_trending_fit_tbl <- function(x, new_data, na.rm, metric, ...
 
 calculate_yardstick_trending_predict <- function(x, na.rm, as_tibble, metric) {
   result <- get_result(x)
+  truth <- try_na(try(get_response(x), silent = TRUE))
+  estimate <- try_na(try(get_estimate(x), silent = TRUE))
   calculate_yardstick(
     x = result,
-    truth = get_response(result),
-    estimate = get_estimate(result),
+    truth = truth,
+    estimate = estimate,
     metric = metric,
     na.rm = na.rm,
     as_tibble = as_tibble
@@ -89,8 +94,8 @@ calculate_yardstick_trending_predict <- function(x, na.rm, as_tibble, metric) {
 
 calculate_yardstick_trending_predict_tbl <- function(x, na.rm, metric, ...) {
   result <- get_result(x)
-  truth <- get_response(x)
-  estimate <- get_estimate(x)
+  truth <- try_na(try(get_response(x), silent = TRUE))
+  estimate <- try_na(try(get_estimate(x), silent = TRUE))
   res <- .mapply(
     FUN = calculate_yardstick,
     dots = list(

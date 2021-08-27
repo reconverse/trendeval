@@ -43,3 +43,9 @@ make_catcher <- function(fun) {
     list(result = res, warnings = warn, errors = err)
   }
 }
+
+# -------------------------------------------------------------------------
+
+try_na <- function(x) {
+  if (inherits(x, "try-error")) NA_character_ else x
+}
