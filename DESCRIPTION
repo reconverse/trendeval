@@ -40,7 +40,9 @@ Imports:
     stats,
     tibble
 Suggests: 
+    testthat (>= 3.0.0),
     dplyr,
     outbreaks
 Remotes:
     reconverse/trending
+Config/testthat/edition: 3
