@@ -167,7 +167,9 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&gt;</span> <span class="st">"2020-05-28"</span>, <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2020-06-11"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">day</span>, <span class="va">weekday</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span>
+
 <span class="va">all_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">pathways_recent</span>, <span class="va">new_dat</span><span class="op">)</span>
+
 <span class="va">out</span> <span class="op">&lt;-</span> 
   <span class="va">best_by_rmse</span> <span class="op">%&gt;%</span>  
   <span class="fu"><a href="https://rdrr.io/pkg/trending/man/fit.html">fit</a></span><span class="op">(</span><span class="va">pathways_recent</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -188,6 +190,7 @@
 <span class="co">#&gt;  9 2020-04-10    23 rest_of_week 33946   43961.   40718.   47463.    29580    61313</span>
 <span class="co">#&gt; 10 2020-04-11    24 weekend      32269   36796.   33092.   40916.    23141    53834</span>
 <span class="co">#&gt; # … with 61 more rows</span>
+
 <span class="co"># plot output</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
