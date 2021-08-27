@@ -71,14 +71,14 @@ calculate_aic.trending_model <- function(x, data, as_tibble = FALSE, ...) {
 
 # -------------------------------------------------------------------------
 
-#' @aliases calculate_rmse.list
-#' @rdname calculate_rmse
+#' @aliases calculate_aic.list
+#' @rdname calculate_aic
 #' @export
 calculate_aic.list <- function(x, data, ...) {
   if (!all(vapply(x, inherits, logical(1), "trending_model"))) {
     stop("list entries should be `trending_model` objects", call. = FALSE)
   }
-  res <- fit(x, data)
+  res <- eval(bquote(fit(x, .(data))))
   calculate_aic(res)
 }
 
@@ -100,7 +100,10 @@ calculate_aic.trending_fit <- function(x, as_tibble = FALSE, ...) {
 calculate_aic.trending_fit_tbl <- function(x, ...) {
   fitted_models <- get_fitted_model(x)
   res <- lapply(fitted_models, calculate_aic_internal, as_tibble = TRUE)
-  do.call(rbind, res)
+  res <- do.call(rbind, res)
+  nm_var <- attr(x, "model_name")
+  nms <- if (is.null(nm_var)) paste0("model_", 1:nrow(x)) else x[[nm_var]]
+  tibble(model_name = nms, res)
 }
 
 # ------------------------------------------------------------------------- #

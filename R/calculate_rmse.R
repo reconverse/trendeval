@@ -79,7 +79,7 @@ calculate_rmse.list <- function(x, data, na.rm = TRUE, ...) {
   if (!all(vapply(x, inherits, logical(1), "trending_model"))) {
     stop("list entries should be `trending_model` objects", call. = FALSE)
   }
-  res <- eval(substitute(fit(x, data)))
+  res <- eval(bquote(fit(x, .(data))))
   calculate_rmse(res, na.rm = na.rm)
 }
 
@@ -110,6 +110,7 @@ calculate_rmse.trending_fit_tbl <- function(x, new_data, na.rm = TRUE, ...) {
     na.rm = na.rm,
     metric = "rmse_vec"
   )
+
 }
 
 # -------------------------------------------------------------------------

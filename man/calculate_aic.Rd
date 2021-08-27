@@ -4,6 +4,7 @@
 \alias{calculate_aic}
 \alias{calculate_aic.default}
 \alias{calculate_aic.trending_model}
+\alias{calculate_aic.list}
 \alias{calculate_aic.trending_fit}
 \alias{calculate_aic.trending_fit_tbl}
 \title{Generic for calculating the AIC}
@@ -13,6 +14,8 @@ calculate_aic(x, ...)
 \method{calculate_aic}{default}(x, ...)
 
 \method{calculate_aic}{trending_model}(x, data, as_tibble = FALSE, ...)
+
+\method{calculate_aic}{list}(x, data, ...)
 
 \method{calculate_aic}{trending_fit}(x, as_tibble = FALSE, ...)
 

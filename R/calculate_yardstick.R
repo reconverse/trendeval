@@ -54,7 +54,10 @@ calculate_yardstick_trending_fit_tbl <- function(x, new_data, na.rm, metric, ...
       as_tibble = TRUE
     )
   )
-  do.call(rbind, res)
+  out <- do.call(rbind, res)
+  nm_var <- attr(x, "model_name")
+  nms <- if (is.null(nm_var)) paste0("model_", 1:nrow(x)) else x[[nm_var]]
+  tibble(model_name = nms, out)
 }
 
 # -------------------------------------------------------------------------
