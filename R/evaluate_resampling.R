@@ -74,7 +74,7 @@ evaluate_resampling.trending_model <- function(
   envir <- parent.frame(1)
   groups <- rsample::vfold_cv(data, v = v, repeats = repeats)
   fun <- sprintf("calculate_%s", metric)
-  fun <- get(fun, mode = "function", envir = envir)
+  fun <- getFromNamespace(fun, ns = "trendeval")
   res <- evaluate_over_splits(x, groups$splits, fun, metric_arguments)
   structure(res, class = c("trendeval_resampling", class(res)))
 }
@@ -116,6 +116,7 @@ evaluate_resampling.list <- function(
 
 #' @export
 summary.trendeval_resampling <- function(object, ...) {
+  if (!"model_name" %in% names(object)) object$model_name <- "model_1"
   res <- tapply(object$result, object$model_name, mean, na.rm = TRUE, simplify = FALSE)
   nas <- tapply(object$result, object$model_name, is.na, simplify = FALSE)
   splits_averaged <- vapply(nas, length, numeric(1))
