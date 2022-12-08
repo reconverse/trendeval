@@ -21,6 +21,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -33,25 +35,19 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">trendeval</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1.9001</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/reconverse/trendeval/">
+  <a href="https://github.com/reconverse/trendeval/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -70,147 +66,147 @@
   <div class="contents col-md-9">
 
 
-<div id="trendeval" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#trendeval" class="anchor"></a>Trendeval</h1></div>
-<p><em>trendeval</em> aims to provide a coherent interface for evaluating models fit with the <a href="https://github.com/reconverse/trending">trending</a> package. Whilst it is useful in an interactive context, it’s main focus is to provide an intuitive interface on which other packages can be developed (e.g. <a href="https://github.com/reconhub/trendbreaker"><em>trendbreaker</em></a>).</p>
-<div id="installing-the-package" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installing-the-package" class="anchor"></a>Installing the package</h2>
-<p>You can install the stable version of this package from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="section level1">
+<div class="page-header"><h1 id="trendeval">Trendeval<a class="anchor" aria-label="anchor" href="#trendeval"></a>
+</h1></div>
+<p><em>trendeval</em> aims to provide a coherent interface for evaluating models fit with the <a href="https://github.com/reconverse/trending" class="external-link">trending</a> package. Whilst it is useful in an interactive context, it’s main focus is to provide an intuitive interface on which other packages can be developed (e.g. <a href="https://github.com/reconhub/trendbreaker" class="external-link"><em>trendbreaker</em></a>).</p>
+<div class="section level2">
+<h2 id="installing-the-package">Installing the package<a class="anchor" aria-label="anchor" href="#installing-the-package"></a>
+</h2>
+<p>You can install the stable version of this package from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"trendeval"</span><span class="op">)</span></code></pre></div>
-<p>The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"trendeval"</span><span class="op">)</span></span></code></pre></div>
+<p>The development version can be installed from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"reconverse/trendeval"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"reconverse/trendeval"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="model-selection-example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#model-selection-example" class="anchor"></a>Model selection example</h2>
+<div class="section level2">
+<h2 id="model-selection-example">Model selection example<a class="anchor" aria-label="anchor" href="#model-selection-example"></a>
+</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>      <span class="co"># for data manipulation</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks">outbreaks</a></span><span class="op">)</span>  <span class="co"># for data</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconverse/trending">trending</a></span><span class="op">)</span>   <span class="co"># for trend fitting</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconverse/trendeval">trendeval</a></span><span class="op">)</span>  <span class="co"># for model selection</span>
-
-<span class="co"># load data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">covid19_england_nhscalls_2020</span><span class="op">)</span>
-
-<span class="co"># define a selection of model in a named list</span>
-<span class="va">models</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-  simple <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html">lm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span><span class="op">)</span>,
-  glm_poisson <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html">glm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span>, family <span class="op">=</span> <span class="st">"poisson"</span><span class="op">)</span>,
-  glm_poisson_weekday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html">glm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">weekday</span>, family <span class="op">=</span> <span class="st">"quasipoisson"</span><span class="op">)</span>,
-  glm_quasipoisson <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html">glm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span>, family <span class="op">=</span> <span class="st">"poisson"</span><span class="op">)</span>,
-  glm_quasipoisson_weekday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html">glm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">weekday</span>, family <span class="op">=</span> <span class="st">"quasipoisson"</span><span class="op">)</span>,
-  glm_negbin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html">glm_nb_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span><span class="op">)</span>,
-  glm_negbin_weekday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html">glm_nb_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">weekday</span><span class="op">)</span>,
-  will_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html">glm_nb_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">nonexistant</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="co"># select 8 weeks of data (from a period when the prevalence was decreasing)</span>
-<span class="va">last_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2020-05-28"</span><span class="op">)</span>
-<span class="va">first_date</span> <span class="op">&lt;-</span> <span class="va">last_date</span> <span class="op">-</span> <span class="fl">8</span><span class="op">*</span><span class="fl">7</span>
-<span class="va">pathways_recent</span> <span class="op">&lt;-</span>
-  <span class="va">covid19_england_nhscalls_2020</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&gt;=</span> <span class="va">first_date</span>, <span class="va">date</span> <span class="op">&lt;=</span> <span class="va">last_date</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">day</span>, <span class="va">weekday</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span>
-
-<span class="co"># split data for fitting and prediction</span>
-<span class="va">dat</span> <span class="op">&lt;-</span>
-  <span class="va">pathways_recent</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&lt;=</span> <span class="va">first_date</span> <span class="op">+</span> <span class="fl">6</span><span class="op">*</span><span class="fl">7</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_split.html">group_split</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">fitting_data</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>
-<span class="va">pred_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">date</span>, <span class="va">day</span>, <span class="va">weekday</span><span class="op">)</span>
-
-<span class="co"># assess the models using the evaluate_resampling</span>
-<span class="va">results</span> <span class="op">&lt;-</span> 
-  <span class="va">models</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="reference/evaluate_resampling.html">evaluate_resampling</a></span><span class="op">(</span><span class="va">fitting_data</span>, metric <span class="op">=</span> <span class="st">"rmse"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="va">summary</span>
-<span class="va">results</span>
-<span class="co">#&gt; # A tibble: 8 × 5</span>
-<span class="co">#&gt;   model_name               metric value splits_averaged nas_removed</span>
-<span class="co">#&gt;   &lt;chr&gt;                    &lt;chr&gt;  &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 glm_negbin               rmse   5238.              43           0</span>
-<span class="co">#&gt; 2 glm_negbin_weekday       rmse   5224.              43           0</span>
-<span class="co">#&gt; 3 glm_poisson              rmse   5193.              43           0</span>
-<span class="co">#&gt; 4 glm_poisson_weekday      rmse   5166.              43           0</span>
-<span class="co">#&gt; 5 glm_quasipoisson         rmse   5193.              43           0</span>
-<span class="co">#&gt; 6 glm_quasipoisson_weekday rmse   5166.              43           0</span>
-<span class="co">#&gt; 7 simple                   rmse   6903.              43           0</span>
-<span class="co">#&gt; 8 will_error               rmse    NaN               43          43</span></code></pre></div>
-<div id="example-of-how-this-output-could-then-be-used" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-of-how-this-output-could-then-be-used" class="anchor"></a>Example of how this output could then be used</h3>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>      <span class="co"># for data manipulation</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span>  <span class="co"># for data</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconverse/trending" class="external-link">trending</a></span><span class="op">)</span>   <span class="co"># for trend fitting</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconverse/trendeval" class="external-link">trendeval</a></span><span class="op">)</span>  <span class="co"># for model selection</span></span>
+<span></span>
+<span><span class="co"># load data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">covid19_england_nhscalls_2020</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># define a selection of model in a named list</span></span>
+<span><span class="va">models</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  simple <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html" class="external-link">lm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span><span class="op">)</span>,</span>
+<span>  glm_poisson <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html" class="external-link">glm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span>, family <span class="op">=</span> <span class="st">"poisson"</span><span class="op">)</span>,</span>
+<span>  glm_poisson_weekday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html" class="external-link">glm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">weekday</span>, family <span class="op">=</span> <span class="st">"quasipoisson"</span><span class="op">)</span>,</span>
+<span>  glm_quasipoisson <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html" class="external-link">glm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span>, family <span class="op">=</span> <span class="st">"poisson"</span><span class="op">)</span>,</span>
+<span>  glm_quasipoisson_weekday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html" class="external-link">glm_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">weekday</span>, family <span class="op">=</span> <span class="st">"quasipoisson"</span><span class="op">)</span>,</span>
+<span>  glm_negbin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html" class="external-link">glm_nb_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span><span class="op">)</span>,</span>
+<span>  glm_negbin_weekday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html" class="external-link">glm_nb_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">weekday</span><span class="op">)</span>,</span>
+<span>  will_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/trending/man/trending_model.html" class="external-link">glm_nb_model</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">nonexistant</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># select 8 weeks of data (from a period when the prevalence was decreasing)</span></span>
+<span><span class="va">last_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2020-05-28"</span><span class="op">)</span></span>
+<span><span class="va">first_date</span> <span class="op">&lt;-</span> <span class="va">last_date</span> <span class="op">-</span> <span class="fl">8</span><span class="op">*</span><span class="fl">7</span></span>
+<span><span class="va">pathways_recent</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">covid19_england_nhscalls_2020</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&gt;=</span> <span class="va">first_date</span>, <span class="va">date</span> <span class="op">&lt;=</span> <span class="va">last_date</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">day</span>, <span class="va">weekday</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># split data for fitting and prediction</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">pathways_recent</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&lt;=</span> <span class="va">first_date</span> <span class="op">+</span> <span class="fl">6</span><span class="op">*</span><span class="fl">7</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_split.html" class="external-link">group_split</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">fitting_data</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">pred_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">date</span>, <span class="va">day</span>, <span class="va">weekday</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># assess the models using the evaluate_resampling</span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">models</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="reference/evaluate_resampling.html">evaluate_resampling</a></span><span class="op">(</span><span class="va">fitting_data</span>, metric <span class="op">=</span> <span class="st">"rmse"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="va">summary</span></span>
+<span><span class="va">results</span></span>
+<span><span class="co">#&gt; # A tibble: 8 × 5</span></span>
+<span><span class="co">#&gt;   model_name               metric value splits_averaged nas_removed</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                    &lt;chr&gt;  &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 glm_negbin               rmse   5238.              43           0</span></span>
+<span><span class="co">#&gt; 2 glm_negbin_weekday       rmse   5224.              43           0</span></span>
+<span><span class="co">#&gt; 3 glm_poisson              rmse   5193.              43           0</span></span>
+<span><span class="co">#&gt; 4 glm_poisson_weekday      rmse   5166.              43           0</span></span>
+<span><span class="co">#&gt; 5 glm_quasipoisson         rmse   5193.              43           0</span></span>
+<span><span class="co">#&gt; 6 glm_quasipoisson_weekday rmse   5166.              43           0</span></span>
+<span><span class="co">#&gt; 7 simple                   rmse   6903.              43           0</span></span>
+<span><span class="co">#&gt; 8 will_error               rmse    NaN               43          43</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="example-of-how-this-output-could-then-be-used">Example of how this output could then be used<a class="anchor" aria-label="anchor" href="#example-of-how-this-output-could-then-be-used"></a>
+</h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>      <span class="co"># for data manipulation</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>      <span class="co"># for data manipulation</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>    <span class="co"># for plotting</span>
-
-<span class="co"># Pull out the model with the lowest RMSE</span>
-<span class="va">best_by_rmse</span> <span class="op">&lt;-</span> 
-  <span class="va">results</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">model_name</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">models</span>, <span class="va">.</span><span class="op">)</span>
-
-<span class="co"># Now let's look at the following 14 days as well</span>
-<span class="va">new_dat</span> <span class="op">&lt;-</span>
-  <span class="va">covid19_england_nhscalls_2020</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&gt;</span> <span class="st">"2020-05-28"</span>, <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2020-06-11"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">day</span>, <span class="va">weekday</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span>
-
-<span class="va">all_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">pathways_recent</span>, <span class="va">new_dat</span><span class="op">)</span>
-
-<span class="va">out</span> <span class="op">&lt;-</span> 
-  <span class="va">best_by_rmse</span> <span class="op">%&gt;%</span>  
-  <span class="fu"><a href="https://rdrr.io/pkg/trending/man/fit.html">fit</a></span><span class="op">(</span><span class="va">pathways_recent</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">all_dat</span><span class="op">)</span> <span class="op">%&gt;%</span>  
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">out</span>
-<span class="co">#&gt; &lt;trending_prediction&gt; 71 x 9</span>
-<span class="co">#&gt;    date         day weekday      count estimate lower_ci upper_ci lower_pi upper_pi</span>
-<span class="co">#&gt;    &lt;date&gt;     &lt;int&gt; &lt;fct&gt;        &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 2020-04-02    15 rest_of_week 71917   58301.   53120.   63988.    40268    79935</span>
-<span class="co">#&gt;  2 2020-04-03    16 rest_of_week 63365   56280.   51398.   61625.    38771    77291</span>
-<span class="co">#&gt;  3 2020-04-04    17 weekend      52412   47107.   41966.   52878.    30644    67450</span>
-<span class="co">#&gt;  4 2020-04-05    18 weekend      54014   45474.   40576.   50962.    29459    65284</span>
-<span class="co">#&gt;  5 2020-04-06    19 monday       78996   62206.   54362.   71181.    41350    87955</span>
-<span class="co">#&gt;  6 2020-04-07    20 rest_of_week 62026   48871.   45017.   53054.    33258    67650</span>
-<span class="co">#&gt;  7 2020-04-08    21 rest_of_week 51692   47176.   43540.   51116.    31991    65458</span>
-<span class="co">#&gt;  8 2020-04-09    22 rest_of_week 40797   45540.   42108.   49253.    30765    63346</span>
-<span class="co">#&gt;  9 2020-04-10    23 rest_of_week 33946   43961.   40718.   47463.    29580    61313</span>
-<span class="co">#&gt; 10 2020-04-11    24 weekend      32269   36796.   33092.   40916.    23141    53834</span>
-<span class="co">#&gt; # … with 61 more rows</span>
-
-<span class="co"># plot output</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, ymin <span class="op">=</span> <span class="va">lower_ci</span>, ymax <span class="op">=</span> <span class="va">upper_ci</span><span class="op">)</span>,
-              data <span class="op">=</span> <span class="va">out</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#BBB67E"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, ymin <span class="op">=</span> <span class="va">lower_pi</span>, ymax <span class="op">=</span> <span class="va">upper_pi</span><span class="op">)</span>,
-              data <span class="op">=</span> <span class="va">out</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#BBB67E"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2020-05-28"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span>      <span class="co"># for data manipulation</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span>      <span class="co"># for data manipulation</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>    <span class="co"># for plotting</span></span>
+<span></span>
+<span><span class="co"># Pull out the model with the lowest RMSE</span></span>
+<span><span class="va">best_by_rmse</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_min</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">model_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html" class="external-link">pluck</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html" class="external-link">pluck</a></span><span class="op">(</span><span class="va">models</span>, <span class="va">.</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Now let's look at the following 14 days as well</span></span>
+<span><span class="va">new_dat</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">covid19_england_nhscalls_2020</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&gt;</span> <span class="st">"2020-05-28"</span>, <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2020-06-11"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">day</span>, <span class="va">weekday</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">all_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">pathways_recent</span>, <span class="va">new_dat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">best_by_rmse</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/trending/man/fit.html" class="external-link">fit</a></span><span class="op">(</span><span class="va">pathways_recent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">all_dat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html" class="external-link">pluck</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">out</span></span>
+<span><span class="co">#&gt; &lt;trending_prediction&gt; 71 x 9</span></span>
+<span><span class="co">#&gt;    date         day weekday      count estimate lower_ci upper_ci lower_pi upper_pi</span></span>
+<span><span class="co">#&gt;    &lt;date&gt;     &lt;int&gt; &lt;fct&gt;        &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 2020-04-02    15 rest_of_week 71917   58301.   53120.   63988.    40268    79935</span></span>
+<span><span class="co">#&gt;  2 2020-04-03    16 rest_of_week 63365   56280.   51398.   61625.    38771    77291</span></span>
+<span><span class="co">#&gt;  3 2020-04-04    17 weekend      52412   47107.   41966.   52878.    30644    67450</span></span>
+<span><span class="co">#&gt;  4 2020-04-05    18 weekend      54014   45474.   40576.   50962.    29459    65284</span></span>
+<span><span class="co">#&gt;  5 2020-04-06    19 monday       78996   62206.   54362.   71181.    41350    87955</span></span>
+<span><span class="co">#&gt;  6 2020-04-07    20 rest_of_week 62026   48871.   45017.   53054.    33258    67650</span></span>
+<span><span class="co">#&gt;  7 2020-04-08    21 rest_of_week 51692   47176.   43540.   51116.    31991    65458</span></span>
+<span><span class="co">#&gt;  8 2020-04-09    22 rest_of_week 40797   45540.   42108.   49253.    30765    63346</span></span>
+<span><span class="co">#&gt;  9 2020-04-10    23 rest_of_week 33946   43961.   40718.   47463.    29580    61313</span></span>
+<span><span class="co">#&gt; 10 2020-04-11    24 weekend      32269   36796.   33092.   40916.    23141    53834</span></span>
+<span><span class="co">#&gt; # … with 61 more rows</span></span>
+<span></span>
+<span><span class="co"># plot output</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">out</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_ribbon</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, ymin <span class="op">=</span> <span class="va">lower_ci</span>, ymax <span class="op">=</span> <span class="va">upper_ci</span><span class="op">)</span>,</span>
+<span>              data <span class="op">=</span> <span class="va">out</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#BBB67E"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_ribbon</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, ymin <span class="op">=</span> <span class="va">lower_pi</span>, ymax <span class="op">=</span> <span class="va">upper_pi</span><span class="op">)</span>,</span>
+<span>              data <span class="op">=</span> <span class="va">out</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#BBB67E"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2020-05-28"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
-<div id="resources" class="section level1">
-<h1 class="hasAnchor">
-<a href="#resources" class="anchor"></a>Resources</h1>
-<div id="getting-help-online" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-help-online" class="anchor"></a>Getting help online</h2>
-<p>Bug reports and feature requests should be posted on <em>github</em> using the <a href="https://github.com/reconverse/trendeval/issues"><em>issue</em> system</a>. All other questions should be posted on the <strong>RECON</strong> slack channel see <a href="https://www.repidemicsconsortium.org/forum/" class="uri">https://www.repidemicsconsortium.org/forum/</a> for details on how to join.</p>
+<div class="section level1">
+<h1 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
+</h1>
+<div class="section level2">
+<h2 id="getting-help-online">Getting help online<a class="anchor" aria-label="anchor" href="#getting-help-online"></a>
+</h2>
+<p>Bug reports and feature requests should be posted on <em>github</em> using the <a href="https://github.com/reconverse/trendeval/issues" class="external-link"><em>issue</em> system</a>. All other questions should be posted on the <strong>RECON</strong> slack channel see <a href="https://www.repidemicsconsortium.org/forum/" class="external-link uri">https://www.repidemicsconsortium.org/forum/</a> for details on how to join.</p>
 </div>
 </div>
 
@@ -218,50 +214,60 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=trendeval">https://​cloud.r-project.org/​package=trendeval</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/reconverse/trendeval/">https://​github.com/​reconverse/​trendeval/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/reconverse/trendeval/issues">https://​github.com/​reconverse/​trendeval/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Dirk Schumacher <br><small class="roles"> Author </small>  </li>
-<li>Thibaut Jombart <br><small class="roles"> Author </small>  </li>
-<li>Tim Taylor <br><small class="roles"> Contributor, maintainer </small> <a href="https://orcid.org/0000-0002-8587-7113" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="https://cloud.r-project.org/package=trendeval" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/reconverse/trendeval/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/reconverse/trendeval/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=trendeval"><img src="https://www.r-pkg.org/badges/version/trendeval" alt="CRAN status"></a></li>
-<li><a href="https://codecov.io/gh/reconverse/trendeval?branch=master"><img src="https://codecov.io/gh/reconverse/trendeval/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://github.com/reconverse/trendeval/actions"><img src="https://github.com/reconverse/trendeval/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing trendeval</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Dirk Schumacher <br><small class="roles"> Author </small>  </li>
+<li>Thibaut Jombart <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=trendeval" class="external-link"><img src="https://www.r-pkg.org/badges/version/trendeval" alt="CRAN status"></a></li>
+<li><a href="https://codecov.io/gh/reconverse/trendeval?branch=master" class="external-link"><img src="https://codecov.io/gh/reconverse/trendeval/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://github.com/reconverse/trendeval/actions" class="external-link"><img src="https://github.com/reconverse/trendeval/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Dirk Schumacher, Thibaut Jombart, Tim Taylor.</p>
+  <p></p>
+<p>Developed by Dirk Schumacher, Thibaut Jombart.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -269,6 +275,8 @@
 
   
 
+
+  
 
   </body>
 </html>
