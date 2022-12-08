@@ -1,6 +1,6 @@
 Package: trendeval
 Title: Evaluate Trending Models
-Version: 0.0.1.9000
+Version: 0.0.1.9001
 Authors@R:
     c(
       person(
@@ -12,13 +12,13 @@ Authors@R:
       person(
         given = "Thibaut",
         family = "Jombart",
-        role = c("aut"),
+        role = c("aut", "cre"),
         email = "thibautjombart@gmail.com"
       ),
       person(
         given = "Tim",
         family = "Taylor",
-        role = c("ctb", "cre"),
+        role = c("ctb"),
         email = "tim.taylor@hiddenelephants.co.uk", 
         comment = c(ORCID = "0000-0002-8587-7113")
       )
