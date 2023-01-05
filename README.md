@@ -6,8 +6,7 @@
 status](https://www.r-pkg.org/badges/version/trendeval)](https://CRAN.R-project.org/package=trendeval)
 [![Codecov test
 coverage](https://codecov.io/gh/reconverse/trendeval/branch/master/graph/badge.svg)](https://codecov.io/gh/reconverse/trendeval?branch=master)
-[![R build
-status](https://github.com/reconverse/trendeval/workflows/R-CMD-check/badge.svg)](https://github.com/reconverse/trendeval/actions)
+[![R-CMD-check](https://github.com/reconverse/trendeval/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/reconverse/trendeval/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 # Trendeval

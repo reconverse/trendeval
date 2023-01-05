@@ -1,0 +1,5 @@
+url: http://www.reconverse.org/trendeval
+template:
+  bootstrap: 5
+development:
+  mode: auto
