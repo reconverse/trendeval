@@ -124,7 +124,8 @@ out <-
   best_by_rmse %>%  
   fit(pathways_recent) %>% 
   predict(all_dat) %>%  
-  pluck(1)
+  pluck(1) %>% 
+  .subset2(1L)
 out
 
 # plot output

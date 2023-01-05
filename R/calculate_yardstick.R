@@ -117,7 +117,7 @@ calculate_yardstick_trending_predict_tbl <- function(x, na.rm, metric, ...) {
 
 calculate_yardstick_trending_model <- function(x, data, na.rm, as_tibble, metric) {
   fitt <- fit(x, data)
-  calculate_yardstick_trending_fit(
+  calculate_yardstick_trending_fit_tbl(
     fitt,
     new_data = data,
     na.rm = na.rm,

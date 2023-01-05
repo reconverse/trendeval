@@ -58,7 +58,7 @@ test_that("calculate_rmse works as expected", {
   expect_equal(calc_pred_model2$metric, c("rmse", "rmse"))
 
   # prediction test
-  tmp <- calculate_rmse(get_result(pred), as_tibble = TRUE)
+  tmp <- calculate_rmse(pred, as_tibble = TRUE)
   expect_equal(tmp$result, expected_rmse)
 
 

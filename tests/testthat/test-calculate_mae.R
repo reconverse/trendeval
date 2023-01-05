@@ -58,7 +58,7 @@ test_that("calculate_mae works as expected", {
   expect_equal(calc_pred_model2$metric, c("mae", "mae"))
 
   # prediction test
-  tmp <- calculate_mae(get_result(pred), as_tibble = TRUE)
+  tmp <- calculate_mae(pred, as_tibble = TRUE)
   expect_equal(tmp$result, expected_mae)
 
 

@@ -65,7 +65,7 @@ calculate_aic.default <- function(x, ...) {
 #' @export
 calculate_aic.trending_model <- function(x, data, as_tibble = FALSE, ...) {
   tmp <- fit(x, data)
-  fitted_model <- get_fitted_model(tmp)
+  fitted_model <- get_fitted_model(tmp)[[1L]]
   calculate_aic_internal(fitted_model, as_tibble = as_tibble)
 }
 
