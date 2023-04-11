@@ -1,11 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/trendeval)](https://CRAN.R-project.org/package=trendeval)
 [![Codecov test
-coverage](https://codecov.io/gh/reconverse/trendeval/branch/master/graph/badge.svg)](https://codecov.io/gh/reconverse/trendeval?branch=master)
+coverage](https://app.codecov.io/gh/reconverse/trendeval/branch/master/graph/badge.svg)](https://app.codecov.io/gh/reconverse/trendeval?branch=master)
 [![R-CMD-check](https://github.com/reconverse/trendeval/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/reconverse/trendeval/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
