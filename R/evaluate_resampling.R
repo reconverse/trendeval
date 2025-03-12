@@ -22,9 +22,7 @@
 #' @param v the number of equally sized data partitions to be used for K-fold
 #'   cross-validation; `v` cross-validations will be performed, each using `v -
 #'   1` partition as training set, and the remaining partition as testing set.
-#'   Defaults to the number of row in data, so that the method uses
-#'   leave-one-out cross validation, akin to Jackknife except that the testing
-#'   set (and not the training set) is used to compute the fit statistics.
+#'   Defaults to 10.
 #' @param repeats the number of times the random K-fold cross validation should
 #'   be repeated for; defaults to 1; larger values are likely to yield more
 #'   reliable / stable results, at the expense of computational time
@@ -66,7 +64,7 @@ evaluate_resampling.trending_model <- function(
     data,
     metric = c("rmse", "rsq", "mae"),
     metric_arguments = list(na.rm = TRUE),
-    v = nrow(data),
+    v = 10,
     repeats = 1,
     ...
 ) {
@@ -89,7 +87,7 @@ evaluate_resampling.list <- function(
     data,
     metric = c("rmse", "rsq", "mae"),
     metric_arguments = list(na.rm = TRUE),
-    v = nrow(data),
+    v = 10,
     repeats = 1,
     ...
 ) {
