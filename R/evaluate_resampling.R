@@ -66,7 +66,7 @@ evaluate_resampling.trending_model <- function(
     data,
     metric = c("rmse", "rsq", "mae"),
     metric_arguments = list(na.rm = TRUE),
-    v = nrow(data),
+    v = 5,
     repeats = 1,
     ...
 ) {
@@ -89,7 +89,7 @@ evaluate_resampling.list <- function(
     data,
     metric = c("rmse", "rsq", "mae"),
     metric_arguments = list(na.rm = TRUE),
-    v = nrow(data),
+    v = 5,
     repeats = 1,
     ...
 ) {

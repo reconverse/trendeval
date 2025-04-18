@@ -16,7 +16,7 @@ evaluate_resampling(x, ...)
   data,
   metric = c("rmse", "rsq", "mae"),
   metric_arguments = list(na.rm = TRUE),
-  v = nrow(data),
+  v = 5,
   repeats = 1,
   ...
 )
@@ -26,7 +26,7 @@ evaluate_resampling(x, ...)
   data,
   metric = c("rmse", "rsq", "mae"),
   metric_arguments = list(na.rm = TRUE),
-  v = nrow(data),
+  v = 5,
   repeats = 1,
   ...
 )

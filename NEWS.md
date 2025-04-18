@@ -1,4 +1,10 @@
-# Development version
+## 0.1.1
 
-* Added a `NEWS.md` file to track changes to the package.
-* Fixes due to changes in upstream trending package.
+- Patch to fix an issue flagged on CRAN checks. Defaults for k-fold cross 
+validation changed from 'n' to 5. 
+
+
+
+## 0.1.0
+
+- First release of the package onto CRAN
