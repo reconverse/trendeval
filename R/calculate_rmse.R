@@ -9,8 +9,9 @@
 #' @param na.rm Should NA values should be removed before calculation of metric
 #'   (passed to the underlying function [yardstick::rmse_vec]).
 #'
-#' @details Specific methods are given for [`trending_model`] (and lists of
-#'   these), [`trending_fit`][trending::fit.trending_model()],
+#' @details Specific methods are given for
+#'   [`trending_model`][trending::trending_model]
+#'   (and lists of these), [`trending_fit`][trending::fit.trending_model()],
 #'   [`trending_fit_tbl`][trending::fit.trending_model()],
 #'   [`trending_predict_tbl`][trending::predict.trending_fit()],
 #'   [`trending_predict_tbl`][trending::predict.trending_fit_tbl()] and

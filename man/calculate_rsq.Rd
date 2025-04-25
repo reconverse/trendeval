@@ -66,8 +66,9 @@ Generic \code{calculate_rsq()} returns the root mean square error for the given
 input.
 }
 \details{
-Specific methods are given for \code{\link{trending_model}} (and lists of
-these), \code{\link[trending:fit.trending_model]{trending_fit}},
+Specific methods are given for
+\code{\link[trending:trending_model]{trending_model}}
+(and lists of these), \code{\link[trending:fit.trending_model]{trending_fit}},
 \code{\link[trending:fit.trending_model]{trending_fit_tbl}},
 \code{\link[trending:predict.trending_fit]{trending_predict_tbl}},
 \code{\link[trending:predict.trending_fit_tbl]{trending_predict_tbl}} and
