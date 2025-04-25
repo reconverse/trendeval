@@ -5,7 +5,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/trendeval)](https://CRAN.R-project.org/package=trendeval)
 [![Codecov test
-coverage](https://codecov.io/gh/reconverse/trendeval/branch/master/graph/badge.svg)](https://codecov.io/gh/reconverse/trendeval?branch=master)
+coverage](https://codecov.io/gh/reconverse/trendeval/branch/master/graph/badge.svg)](https://app.codecov.io/gh/reconverse/trendeval?branch=master)
 [![R-CMD-check](https://github.com/reconverse/trendeval/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/reconverse/trendeval/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -41,7 +41,9 @@ remotes::install_github("reconverse/trendeval", build_vignettes = TRUE)
 ``` r
 library(dplyr)      # for data manipulation
 library(outbreaks)  # for data
+#> Warning: package 'outbreaks' was built under R version 4.4.3
 library(trending)   # for trend fitting
+#> Warning: package 'trending' was built under R version 4.4.3
 library(trendeval)  # for model selection
 
 # load data
@@ -85,14 +87,14 @@ results
 #> # A tibble: 8 × 5
 #>   model_name               metric value splits_averaged nas_removed
 #>   <chr>                    <chr>  <dbl>           <dbl>       <dbl>
-#> 1 glm_negbin               rmse   5238.              43           0
-#> 2 glm_negbin_weekday       rmse   5224.              43           0
-#> 3 glm_poisson              rmse   5193.              43           0
-#> 4 glm_poisson_weekday      rmse   5166.              43           0
-#> 5 glm_quasipoisson         rmse   5193.              43           0
-#> 6 glm_quasipoisson_weekday rmse   5166.              43           0
-#> 7 simple                   rmse   6903.              43           0
-#> 8 will_error               rmse    NaN               43          43
+#> 1 glm_negbin               rmse   7159.               5           0
+#> 2 glm_negbin_weekday       rmse   6348.               5           0
+#> 3 glm_poisson              rmse   7224.               5           0
+#> 4 glm_poisson_weekday      rmse   6981.               5           0
+#> 5 glm_quasipoisson         rmse   6819.               5           0
+#> 6 glm_quasipoisson_weekday rmse   5924.               5           0
+#> 7 simple                   rmse   9064.               5           0
+#> 8 will_error               rmse    NaN                5           5
 ```
 
 ### Example of how this output could then be used
@@ -101,6 +103,7 @@ results
 library(tidyr)      # for data manipulation
 library(purrr)      # for data manipulation
 library(ggplot2)    # for plotting
+#> Warning: package 'ggplot2' was built under R version 4.4.3
 
 # Pull out the model with the lowest RMSE
 best_by_rmse <- 
@@ -127,20 +130,19 @@ out <-
   .subset2(1L)
 out
 #> <trending_prediction> 71 x 9
-#>    date         day weekday      count estimate lower_ci upper…¹ lower…² upper…³
-#>    <date>     <int> <fct>        <int>    <dbl>    <dbl>   <dbl>   <dbl>   <dbl>
-#>  1 2020-04-02    15 rest_of_week 71917   58301.   53120.  63988.   40268   79935
-#>  2 2020-04-03    16 rest_of_week 63365   56280.   51398.  61625.   38771   77291
-#>  3 2020-04-04    17 weekend      52412   47107.   41966.  52878.   30644   67450
-#>  4 2020-04-05    18 weekend      54014   45474.   40576.  50962.   29459   65284
-#>  5 2020-04-06    19 monday       78996   62206.   54362.  71181.   41350   87955
-#>  6 2020-04-07    20 rest_of_week 62026   48871.   45017.  53054.   33258   67650
-#>  7 2020-04-08    21 rest_of_week 51692   47176.   43540.  51116.   31991   65458
-#>  8 2020-04-09    22 rest_of_week 40797   45540.   42108.  49253.   30765   63346
-#>  9 2020-04-10    23 rest_of_week 33946   43961.   40718.  47463.   29580   61313
-#> 10 2020-04-11    24 weekend      32269   36796.   33092.  40916.   23141   53834
-#> # … with 61 more rows, and abbreviated variable names ¹​upper_ci, ²​lower_pi,
-#> #   ³​upper_pi
+#>    date         day weekday   count estimate lower_ci upper_ci lower_pi upper_pi
+#>    <date>     <int> <fct>     <int>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
+#>  1 2020-04-02    15 rest_of_… 71917   58301.   53120.   63988.    40268    79935
+#>  2 2020-04-03    16 rest_of_… 63365   56280.   51398.   61625.    38771    77291
+#>  3 2020-04-04    17 weekend   52412   47107.   41966.   52878.    30644    67450
+#>  4 2020-04-05    18 weekend   54014   45474.   40576.   50962.    29459    65284
+#>  5 2020-04-06    19 monday    78996   62206.   54362.   71181.    41350    87955
+#>  6 2020-04-07    20 rest_of_… 62026   48871.   45017.   53054.    33258    67650
+#>  7 2020-04-08    21 rest_of_… 51692   47176.   43540.   51116.    31991    65458
+#>  8 2020-04-09    22 rest_of_… 40797   45540.   42108.   49253.    30765    63346
+#>  9 2020-04-10    23 rest_of_… 33946   43961.   40718.   47463.    29580    61313
+#> 10 2020-04-11    24 weekend   32269   36796.   33092.   40916.    23141    53834
+#> # ℹ 61 more rows
 
 # plot output
 ggplot(out, aes(x = date, y = count)) +
